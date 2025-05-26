@@ -1,18 +1,20 @@
+using System;
 using LibMMD.Material;
 using LibMMD.Model;
 using LibMMD.Reader;
 using LibMMD.Writer;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using static LibMMD.Model.Morph;
 using static LibMMD.Model.SkinningOperator;
+using Object = UnityEngine.Object;
 
 namespace UnityPMXExporter
 {
-    public class ModelExporter
+    public static class ModelExporter
     {
-
         public static void ExportModel(GameObject target, string path, PMXModelConfig exportConfig = new PMXModelConfig(), RenderTextureReadWrite colorSpace = RenderTextureReadWrite.Default)
         {
             
@@ -35,7 +37,6 @@ namespace UnityPMXExporter
 
             Debug.Log($"PMX Save at {path}");
         }
-
 
         public static RawMMDModel ReadPMXModelFromGameObject(GameObject target, string[] textures, PMXModelConfig config)
         {
@@ -63,7 +64,7 @@ namespace UnityPMXExporter
             }
 
             model.Parts = ReadPartMaterials(renderers, model);
-            model.Bones = ReadBones(bones);
+            model.Bones = ReadMMDBones(bones, rootBone);
             model.Morphs = ReadMorph(renderers);
             model.Rigidbodies = new MMDRigidBody[0];
             model.Joints = new MMDJoint[0];
@@ -137,28 +138,309 @@ namespace UnityPMXExporter
             return morphs.ToArray();
         }
 
-        private static Bone[] ReadBones(List<Transform> bonelist)
+        private static readonly Dictionary<string, string> mmdBoneMap = new() 
         {
-            List<Bone> pmxbones = new List<Bone>();
-            foreach (var bone in bonelist)
+            {"IKGoal_LeftFoot", "左足ＩＫ"},
+            {"IKGoal_RightFoot", "右足ＩＫ"},
+            {"IKGoal_LeftHand", "左手首ＩＫ"},
+            {"IKGoal_RightHand", "右手首ＩＫ"},
+            {"Reference", "センター"},
+            {"Hips", "腰"},
+            {"Spine", "上半身"},
+            {"Spine1", "上半身１"},
+            {"Spine2", "上半身２"},
+            {"Neck", "首"},
+            {"Head", "頭"},
+            {"LeftEye", "左目"},
+            {"RightEye", "右目"},
+            {"LeftShoulder", "左肩"},
+            {"LeftArm", "左腕"},
+            {"LeftForeArm", "左ひじ"},
+            {"LeftHand", "左手首"},
+            {"LeftHandThumb1", "左親指０"},
+            {"LeftHandThumb2", "左親指１"},
+            {"LeftHandThumb3", "左親指２"},
+            {"LeftHandIndex1", "左人指１"},
+            {"LeftHandIndex2", "左人指２"},
+            {"LeftHandIndex3", "左人指３"},
+            {"LeftHandMiddle1", "左中指１"},
+            {"LeftHandMiddle2", "左中指２"},
+            {"LeftHandMiddle3", "左中指３"},
+            {"LeftHandRing1", "左薬指１"},
+            {"LeftHandRing2", "左薬指２"},
+            {"LeftHandRing3", "左薬指３"},
+            {"LeftHandPinky1", "左小指１"},
+            {"LeftHandPinky2", "左小指２"},
+            {"LeftHandPinky3", "左小指３"},
+            {"RightShoulder", "右肩"},
+            {"RightArm", "右腕"},
+            {"RightForeArm", "右ひじ"},
+            {"RightHand", "右手首"},
+            {"RightHandThumb1", "右親指０"},
+            {"RightHandThumb2", "右親指１"},
+            {"RightHandThumb3", "右親指２"},
+            {"RightHandIndex1", "右人指１"},
+            {"RightHandIndex2", "右人指２"},
+            {"RightHandIndex3", "右人指３"},
+            {"RightHandMiddle1", "右中指１"},
+            {"RightHandMiddle2", "右中指２"},
+            {"RightHandMiddle3", "右中指３"},
+            {"RightHandRing1", "右薬指１"},
+            {"RightHandRing2", "右薬指２"},
+            {"RightHandRing3", "右薬指３"},
+            {"RightHandPinky1", "右小指１"},
+            {"RightHandPinky2", "右小指２"},
+            {"RightHandPinky3", "右小指３"},
+            {"Pelvis", "下半身"},
+            {"LeftUpLeg", "左足"},
+            {"LeftLeg", "左ひざ"},
+            {"LeftFoot", "左足首"},
+            {"LeftToeBase", "左つま先"},
+            {"RightUpLeg", "右足"},
+            {"RightLeg", "右ひざ"},
+            {"RightFoot", "右足首"},
+            {"RightToeBase", "右つま先"}
+        };
+
+        private static readonly Dictionary<string, string> mmdIKBoneMap = new()
+        {
+            {"IKGoal_LeftFoot", "左足ＩＫ"},
+            {"IKGoal_RightFoot", "右足ＩＫ"},
+            {"IKGoal_LeftHand", "左手首ＩＫ"},
+            {"IKGoal_RightHand", "右手首ＩＫ"}
+        };
+        
+        private static readonly Dictionary<string, string> mmdCreateIKBoneMap = new()
+        {
+            {"LeftToeBase", "左つま先ＩＫ"},
+            {"RightToeBase", "右つま先ＩＫ"}
+        };
+
+        private static readonly Dictionary<string, Vector3> mmdIKBoneOffsetMap = new()
+        {
+            {"左つま先ＩＫ", Vector3.down * 0.1f},
+            {"右つま先ＩＫ", Vector3.down * 0.1f},
+            {"左足ＩＫ", Vector3.back * 0.1f},
+            {"右足ＩＫ", Vector3.back * 0.1f},
+            {"左手首ＩＫ", Vector3.back * 0.1f},
+            {"右手首ＩＫ", Vector3.back * 0.1f}
+        };
+
+        private static readonly Dictionary<string, string> mmdParentChildNameMap = new()
+        {
+            {"全ての親", "センター"},
+            {"センター", "腰"},
+            {"上半身", "上半身１"},
+            {"上半身１", "上半身２"},
+            {"上半身２", "首"},
+            {"左肩", "左腕"},
+            {"左腕", "左ひじ"},
+            {"左ひじ", "左手首"},
+            {"右肩", "右腕"},
+            {"右腕", "右ひじ"},
+            {"右ひじ", "右手首"}
+        };
+        
+        private static readonly Dictionary<string, string> mmdChildParentNameMap = new()
+        {
+            {"左つま先ＩＫ", "左足ＩＫ"},
+            {"右つま先ＩＫ", "右足ＩＫ"}
+        };
+
+        private static readonly HashSet<string> MoveableBones = new()
+        {
+            "全ての親",
+            "センター",
+            "グルーブ",
+            "左ダミー",
+            "右ダミー",
+            "左親指０",
+            "右親指０",
+            "左足ＩＫ親",
+            "右足ＩＫ親"
+        };
+
+        private static readonly HashSet<string> ControllableBones = new()
+        {
+            "左親指０",
+            "左親指１",
+            "左親指２",
+            "左人指１",
+            "左人指２",
+            "左人指３",
+            "左中指１",
+            "左中指２",
+            "左中指３",
+            "左薬指１",
+            "左薬指２",
+            "左薬指３",
+            "左小指１",
+            "左小指２",
+            "左小指３",
+            "右親指０",
+            "右親指１",
+            "右親指２",
+            "右人指１",
+            "右人指２",
+            "右人指３",
+            "右中指１",
+            "右中指２",
+            "右中指３",
+            "右薬指１",
+            "右薬指２",
+            "右薬指３",
+            "右小指１",
+            "右小指２",
+            "右小指３",
+        };
+
+        private static void RefreshParentChildIndex(List<Bone> bones, IReadOnlyDictionary<string, string> parentChildMap)
+        {
+            foreach (Bone bone in bones)
             {
-                Bone pmxbone = new Bone();
-                pmxbone.Name = pmxbone.NameEn = bone.name;
-                pmxbone.Position = bone.position;
-                pmxbone.ParentIndex = bonelist.IndexOf(bone.parent);
-                pmxbone.TransformLevel = 0;
-                pmxbone.Visible = true;
-                pmxbone.Movable = true;
-                pmxbone.Rotatable = true;
-                pmxbone.Controllable = true;
-                pmxbone.ChildBoneVal = new Bone.ChildBone()
+                if (parentChildMap.TryGetValue(bone.Name, out string childName))
                 {
-                    ChildUseId = true,
-                    Index = (bone.childCount > 0 ? bonelist.IndexOf(bone.GetChild(0)) : -1)
+                    bone.ChildBoneVal.Index = bones.FindIndex(childBone => childBone.Name.Equals(childName));
+                }
+            }
+        }
+
+        private static void RefreshChildParentIndex(List<Bone> bones, IReadOnlyDictionary<string, string> childParentMap)
+        {
+            foreach (Bone bone in bones)
+            {
+                if (childParentMap.TryGetValue(bone.Name, out string parentName))
+                {
+                    bone.ParentIndex = bones.FindIndex(parentBone => parentBone.Name.Equals(parentName));
+                }
+            }
+        }
+
+        private static void RefreshBoneProperties(List<Bone> bones)
+        {
+            foreach (Bone bone in bones)
+            {
+                if (MoveableBones.Contains(bone.Name))
+                {
+                    bone.Movable = true;
+                }
+
+                if (ControllableBones.Contains(bone.Name))
+                {
+                    bone.Controllable = true;
+                }
+
+                if (bone.Name.EndsWith("先"))
+                {
+                    bone.Visible = false;
+                }
+            }
+        }
+
+        private static string GetMMDBoneName(Object transform)
+        {
+            return mmdBoneMap.TryGetValue(transform.name, out string boneName) ? boneName : transform.name;
+        }
+        
+        private static Bone[] ReadMMDBones(List<Transform> bones, Transform root)
+        {
+            var boneList = ReadBones(bones, root);
+            RefreshParentChildIndex(boneList, mmdParentChildNameMap);
+            RefreshChildParentIndex(boneList, mmdChildParentNameMap);
+            RefreshBoneProperties(boneList);
+            return boneList.ToArray();
+        }
+        
+        private static List<Bone> ReadBones(List<Transform> bonelist, Transform rootBone)
+        {
+            var pmxbones = new List<Bone>();
+            foreach (Transform bone in bonelist)
+            {
+                var pmxbone = new Bone
+                {
+                    Name = bone == rootBone ? "全ての親" : GetMMDBoneName(bone),
+                    NameEn = bone == rootBone ? "root" : bone.name,
+                    Position = bone.position,
+                    ParentIndex = bonelist.IndexOf(bone.parent),
+                    TransformLevel = 0,
+                    Rotatable = true,
+                    Movable = false,
+                    HasIk = mmdIKBoneMap.ContainsKey(bone.name),
+                    Visible = true,
+                    Controllable = false,
+                    ChildBoneVal = new Bone.ChildBone
+                    {
+                        ChildUseId = true,
+                        Index = bone.childCount > 0 ? bonelist.IndexOf(bone.GetChild(0)) : -1
+                    }
                 };
+                if (pmxbone.HasIk)
+                {
+                    int ikTargetIndex = bonelist.FindIndex(target => target.name.Equals(pmxbone.NameEn[7..]));
+                    pmxbone.TransformLevel = 1;
+                    pmxbone.ChildBoneVal.ChildUseId = false;
+                    pmxbone.Movable = true;
+                    pmxbone.ChildBoneVal.Offset = mmdIKBoneOffsetMap[pmxbone.Name];
+                    pmxbone.IkInfoVal = new Bone.IkInfo
+                    {
+                        IkTargetIndex = ikTargetIndex,
+                        CcdIterateLimit = 40,
+                        CcdAngleLimit = 114.5916f,
+                        IkLinks = new Bone.IkLink[]
+                        {
+                            new()
+                            {
+                                LinkIndex = ikTargetIndex - 1
+                            },
+                            new()
+                            {
+                                LinkIndex = ikTargetIndex - 2
+                            }
+                        }
+                    };
+                }
+                
+                if (mmdCreateIKBoneMap.TryGetValue(bone.name, out string iKBoneName))
+                {
+                    int ikTargetIndex = bonelist.FindIndex(target => target.name.Equals(bone.name));
+                    var ikBone = new Bone
+                    {
+                        Name = iKBoneName,
+                        NameEn = bone.name,
+                        Position = bone.position,
+                        ParentIndex = bonelist.IndexOf(bone.parent),
+                        TransformLevel = 1,
+                        Rotatable = true,
+                        Movable = true,
+                        HasIk = true,
+                        Visible = true,
+                        Controllable = false,
+                        ChildBoneVal = new Bone.ChildBone
+                        {
+                            ChildUseId = false,
+                            Offset = mmdIKBoneOffsetMap[iKBoneName]
+                        },
+                        IkInfoVal = new Bone.IkInfo
+                        {
+                            IkTargetIndex = ikTargetIndex,
+                            CcdIterateLimit = 3,
+                            CcdAngleLimit = 229.1831f,
+                            IkLinks = new Bone.IkLink[]
+                            {
+                                new()
+                                {
+                                    LinkIndex = ikTargetIndex - 1
+                                }
+                            }
+                        }
+                    };
+                    pmxbones.Add(ikBone);
+                }
+                
                 pmxbones.Add(pmxbone);
             }
-            return pmxbones.ToArray();
+            
+            return pmxbones;
         }
 
         private static Part[] ReadPartMaterials(List<Renderer> renderers, RawMMDModel model)
