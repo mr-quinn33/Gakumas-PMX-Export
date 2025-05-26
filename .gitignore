@@ -72,3 +72,17 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /[Aa]ssets/[Rr]esource/mdl*
+
+# Export path
+/[Aa]ssets/[Ee]xport/fktn/*
+/[Aa]ssets/[Ee]xport/ttmr/*
+/[Aa]ssets/[Ee]xport/hski/*
+/[Aa]ssets/[Ee]xport/jsna/*
+/[Aa]ssets/[Ee]xport/hmsz/*
+/[Aa]ssets/[Ee]xport/hume/*
+/[Aa]ssets/[Ee]xport/kcna/*
+/[Aa]ssets/[Ee]xport/kllj/*
+/[Aa]ssets/[Ee]xport/hrnm/*
+/[Aa]ssets/[Ee]xport/amao/*
+/[Aa]ssets/[Ee]xport/shro/*
+/[Aa]ssets/[Ee]xport/sszk/*
