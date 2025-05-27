@@ -250,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194229}
+  - component: {fileID: 963194232}
   - component: {fileID: 963194230}
   - component: {fileID: 963194231}
   m_Layer: 0
@@ -326,36 +326,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0f79c5bd36ee7b4eb635bc06f088b56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShaderFile: {fileID: 102900000, guid: f137cae197f6bc84faca79801c8ab724, type: 3}
-  FaceFile: {fileID: 102900000, guid: f257ca033c609a54d8a1bf8311ce13d5, type: 3}
-  HairFile: {fileID: 102900000, guid: 33ffd1651e1594e45b16a26fa340a8cd, type: 3}
-  BodyFile: {fileID: 102900000, guid: 27518d55c5fd7a6468555a495c5142b7, type: 3}
-  ShaderList: []
-  Body: {fileID: 0}
-  Face: {fileID: 0}
-  Hair: {fileID: 0}
-  AssetHolder: []
-  ConnectBone: {fileID: 0}
-  DirectionalLight: {fileID: 705507994}
-  MatCapParam: {r: 0, g: 0, b: 0.54901963, a: 0}
-  MatCapRimColor: {r: 0, g: 0, b: 0, a: 0}
-  VLSpecColor: {r: 0, g: 0, b: 0, a: 0}
-  EyeHightlightColor: {r: 0, g: 0, b: 0, a: 0}
-  FadeParam: {r: 0, g: 0, b: 0, a: 0}
-  OutlineWidth: 0.2
-  MatCapRimLight: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +401,34 @@ MonoBehaviour:
   ReflectionSphereMapHDR: {x: 1, y: 1, z: 1, w: 1}
   OutlineParam: {x: 0.05, y: 5, z: 0.011, w: 0.45}
   Head: {fileID: 0}
+--- !u!114 &963194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c005ef0bc0e067e47abe3553caf17a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  configSO: {fileID: 11400000, guid: 028e203546577a94f886a89928069623, type: 2}
+  ShaderFile: {fileID: 102900000, guid: f137cae197f6bc84faca79801c8ab724, type: 3}
+  ShaderList: []
+  Body: {fileID: 0}
+  Face: {fileID: 0}
+  Hair: {fileID: 0}
+  AssetHolder: []
+  ConnectBone: {fileID: 0}
+  DirectionalLight: {fileID: 0}
+  MatCapParam: {r: 0, g: 0, b: 0, a: 0}
+  MatCapRimColor: {r: 0, g: 0, b: 0, a: 0}
+  VLSpecColor: {r: 0, g: 0, b: 0, a: 0}
+  EyeHightlightColor: {r: 0, g: 0, b: 0, a: 0}
+  FadeParam: {r: 0, g: 0, b: 0, a: 0}
+  OutlineWidth: 0
+  MatCapRimLight: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

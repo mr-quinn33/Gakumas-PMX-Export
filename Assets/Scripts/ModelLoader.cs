@@ -1,34 +1,54 @@
 using System.Collections.Generic;
 using System.IO;
-using Campus.Common;
+using Sirenix.OdinInspector;
 using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityPMXExporter;
 using VL.FaceSystem;
-using static UnityEditor.Rendering.CameraUI;
 using Object = UnityEngine.Object;
 
 public class ModelLoader : MonoBehaviour
 {
+	public CharacterConfigSO configSO;
+	
 	// Start is called before the first frame update
 	public Object ShaderFile;
-	public Object FaceFile;
-	public Object HairFile;
-	public Object BodyFile;
+	//public Object FaceFile;
+	//public Object HairFile;
+	//public Object BodyFile;
 
-	public List<Shader> ShaderList = new List<Shader>();
+	public List<Shader> ShaderList = new();
 
 	public GameObject Body;
 	public GameObject Face;
 	public GameObject Hair;
 
-	public List<Object> AssetHolder = new List<Object>();
+	public List<Object> AssetHolder = new();
 
 	public Transform ConnectBone;
 	public Light DirectionalLight;
 
-	void Start()
+	[Button(nameof(Export), ButtonSizes.Medium, ButtonStyle.CompactBox)]
+	private void Export()
+	{
+		AssetBundle.UnloadAllAssetBundles(true);
+		for (var i = 0; i < configSO.Size; i++)
+		{
+			Export(configSO, i);
+			ShaderList.Clear();
+			AssetHolder.Clear();
+			AssetBundle.UnloadAllAssetBundles(true);
+		}
+	}
+
+	private void Export(ICharacterConfigSO config, int y)
+	{
+		(Object face, Object hair, Object body) = config[y];
+		Export(face, hair, body);
+	}
+
+	private void Export(Object faceFile, Object hairFile, Object bodyFile)
 	{
 		if (AssetDatabase.GetAssetPath(ShaderFile) != "")
 		{
@@ -37,17 +57,18 @@ public class ModelLoader : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log($"ShaderFile is None !");
+			Debug.Log($"ShaderFile {ShaderFile} is None !");
 		}
 
-		if (AssetDatabase.GetAssetPath(BodyFile) != "" && File.Exists(AssetDatabase.GetAssetPath(BodyFile)))
+		if (AssetDatabase.GetAssetPath(bodyFile) != "" && File.Exists(AssetDatabase.GetAssetPath(bodyFile)))
 		{
-			var body_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(BodyFile));
+			var body_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(bodyFile));
 			foreach (var ab in body_ab.LoadAllAssets())
 			{
 				if (ab is GameObject go)
 				{
 					Body = Instantiate(go);
+					Body.name = Body.name.Replace("(Clone)", string.Empty);
 					ConnectBone = Body.transform.Find("Reference/Hips/Spine/Spine1/Spine2/Neck/Head");
 				}
 				AssetHolder.Add(ab);
@@ -55,17 +76,18 @@ public class ModelLoader : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log($"BodyFile is None !");
+			Debug.Log($"BodyFile {bodyFile} is None !");
 		}
 
-		if (AssetDatabase.GetAssetPath(FaceFile) != "" && File.Exists(AssetDatabase.GetAssetPath(FaceFile)))
+		if (AssetDatabase.GetAssetPath(faceFile) != "" && File.Exists(AssetDatabase.GetAssetPath(faceFile)))
 		{
-			var face_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(FaceFile));
+			var face_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(faceFile));
 			foreach (var ab in face_ab.LoadAllAssets())
 			{
 				if (ab is GameObject go)
 				{
 					Face = Instantiate(go);
+					Face.name = Face.name.Replace("(Clone)", string.Empty);
 					var vl = Face.GetComponentInChildren<VLActorFaceModel>();
 					var skinned = vl.gameObject.AddComponent<SkinnedMeshRenderer>();
 					var mesh = vl.mesh;
@@ -112,17 +134,18 @@ public class ModelLoader : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log($"FaceFile is None !");
+			Debug.Log($"FaceFile {faceFile} is None !");
 		}
 
-		if (AssetDatabase.GetAssetPath(HairFile) != "" && File.Exists(AssetDatabase.GetAssetPath(HairFile)))
+		if (AssetDatabase.GetAssetPath(hairFile) != "" && File.Exists(AssetDatabase.GetAssetPath(hairFile)))
 		{
-			var hair_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(HairFile));
+			var hair_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(hairFile));
 			foreach (var ab in hair_ab.LoadAllAssets())
 			{
 				if (ab is GameObject go)
 				{
 					Hair = Instantiate(go);
+					Hair.name = Hair.name.Replace("(Clone)", string.Empty);
 					if (ConnectBone)
 					{
 						Hair.transform.SetParent(ConnectBone, false);
@@ -136,16 +159,16 @@ public class ModelLoader : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log($"HairFile is None !");
+			Debug.Log($"HairFile {hairFile} is None !");
 		}
 
-		var chrName = BodyFile.name.Substring(8, 4);
-		var subName = BodyFile.name.Substring(13, 4);
-		var numName = BodyFile.name.Substring(18, 4);
-		var hairSubName = HairFile.name.Substring(13, 4);
-		var hairNumName = HairFile.name.Substring(18, 4);
-		var hairName = HairFile.name.Substring(23, 4);
-		var PMXPath = $"Assets/Export/{chrName}/{subName}/{numName}/{BodyFile.name}-{hairSubName}-{hairNumName}_{hairName}.pmx";
+		var chrName = bodyFile.name.Substring(8, 4);
+		var subName = bodyFile.name.Substring(13, 4);
+		var numName = bodyFile.name.Substring(18, 4);
+		var hairSubName = hairFile.name.Substring(13, 4);
+		var hairNumName = hairFile.name.Substring(18, 4);
+		var hairName = hairFile.name.Substring(23, 4);
+		var PMXPath = $"Assets/Export/{chrName}/{subName}/{numName}/{bodyFile.name}-{hairSubName}-{hairNumName}_{hairName}.pmx";
 		var path = Path.GetDirectoryName(PMXPath);
 		var name = Path.GetFileName(PMXPath);
 
@@ -177,6 +200,11 @@ public class ModelLoader : MonoBehaviour
 	public Color FadeParam;
 	public float OutlineWidth;
 	public Vector4 MatCapRimLight;
+
+	private void Start()
+	{
+		enabled = false;
+	}
 
 	void Update()
 	{
