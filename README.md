@@ -1,5 +1,6 @@
 # Gakumas-PMX-Exporter
 A unity project to export character models into .pmx files based on the work of "IDOL" project by https://github.com/croakfang
+Also special thanks to https://github.com/Yu-ki016
 
 ## Purpose
 1. The main purpose of this repo is to Help MMD Creators by improving the humanoid model exporting algorithm with open-source community.
@@ -36,3 +37,4 @@ A unity project to export character models into .pmx files based on the work of 
 - Asset decryption https://github.com/nijinekoyo/Gakuen-idolmaster-ab-decrypt
 - Model extraction https://github.com/croakfang
 - Model exporting https://github.com/croakfang/UnityPMXExporter
+- Some assets in this project are from shader reverse engineering https://github.com/Yu-ki016/Yu-ki016-Articles
