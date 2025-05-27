@@ -21,12 +21,16 @@ A unity project to export character models into .pmx files based on the work of 
     <img width="121" alt="image" src="https://github.com/user-attachments/assets/a22082ac-437c-438b-8255-a52f2d1a5733" />
     <img width="422" alt="image" src="https://github.com/user-attachments/assets/ef5b6606-8d4a-48cd-a9c2-1c637bfaf031" />
 
-9.  (Optional) Run the "_magick_process.bat" batch file to convert some textures, and it is best to be done outside of UnityEditor to prevent it from importing back all the files you just exported and generateing all the .meta files you don't need.
+9.  (Optional) Download and install magick if you haven't already, run the "_magick_process.bat" batch script to convert some textures for .pmx materials, and it is best to be done outside of UnityEditor to prevent it from importing back all the files you just exported and generateing all the .meta files you don't need.
 
     <img width="156" alt="image" src="https://github.com/user-attachments/assets/a0a4c8b6-6197-4724-adc8-db82df65140e" />
 
 ## Samples
 - Asset bundle sample and model samples can be found in "Assets/ExportSample/"
+
+## FAQ
+1. Q: How to add hair highlight texture?
+   A: Go to "/Texture2D" and look for the image that ends with "_hir_sph.png" for the model of your choice, copy and paste the "m_hir" hair material, then hook up the reference and save it.
 
 ## Credits
 - Asset decryption https://github.com/nijinekoyo/Gakuen-idolmaster-ab-decrypt
