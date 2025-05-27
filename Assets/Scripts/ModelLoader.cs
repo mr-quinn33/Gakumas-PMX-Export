@@ -36,6 +36,8 @@ public class ModelLoader : MonoBehaviour
 		for (var i = 0; i < configSO.Size; i++)
 		{
 			Export(configSO, i);
+			ShaderList.Clear();
+			AssetHolder.Clear();
 			AssetBundle.UnloadAllAssetBundles(true);
 		}
 	}

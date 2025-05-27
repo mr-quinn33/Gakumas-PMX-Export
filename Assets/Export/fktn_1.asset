@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
-  m_Name: fktn
+  m_Name: fktn_1
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -33,12 +33,6 @@ MonoBehaviour:
     - {fileID: 102900000, guid: c642a5c0b35ed144fa4ee9288eae110f, type: 3}
     - {fileID: 102900000, guid: 7a52e2d60d00ace4596ff7e80f75c24b, type: 3}
     - {fileID: 102900000, guid: b84be71fcfd4d1842b88773718fb4915, type: 3}
-    - {fileID: 102900000, guid: 5abe77e5eff57914188bb19aef1dcf67, type: 3}
-    - {fileID: 102900000, guid: 22281ef86fc14e74bb1a9b6c616d991e, type: 3}
-    - {fileID: 102900000, guid: bbe9af8fa8e065a4391b6f76cacc54ce, type: 3}
-    - {fileID: 102900000, guid: 779fc9b697fffa6418df49d7a4935365, type: 3}
-    - {fileID: 102900000, guid: 70b489bd4fc6c0847929baca32d8414e, type: 3}
-    - {fileID: 102900000, guid: f76c6fda6e9cb0b41a164f77f55f3020, type: 3}
     - {fileID: 102900000, guid: 27518d55c5fd7a6468555a495c5142b7, type: 3}
     - {fileID: 102900000, guid: e5c71fb3838561f49b07c605bdfd0321, type: 3}
     - {fileID: 102900000, guid: 4c405e01e67ea8d4caaf74209aa476c3, type: 3}
@@ -63,10 +57,6 @@ MonoBehaviour:
     - {fileID: 102900000, guid: 02e7ff0b260a31d48a66e945bfc6058d, type: 3}
     - {fileID: 102900000, guid: b7a02a9b12f571048b3595ed46d32a77, type: 3}
     - {fileID: 102900000, guid: 03e6eb52e5b29474bb52831a39d47055, type: 3}
-    - {fileID: 102900000, guid: d539a3ab5ec8fd344aac56b549e12985, type: 3}
-    - {fileID: 102900000, guid: b176fd5045f9913498b7da1f0e0c2856, type: 3}
-    - {fileID: 102900000, guid: fc5aa01b3f349714cae5226a3e1d5f1b, type: 3}
-    - {fileID: 102900000, guid: 68d7b36565493ad4da51aa8221c7f586, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -77,10 +67,10 @@ MonoBehaviour:
       Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
     - Name: 
       Entry: 12
-      Data: 159
+      Data: 75
     - Name: ranks
       Entry: 1
-      Data: 3|53
+      Data: 3|25
     - Name: 
       Entry: 10
       Data: 0
@@ -105,90 +95,6 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 1
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
     - Name: 
       Entry: 10
       Data: 0
@@ -317,72 +223,6 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 10
-      Data: 17
-    - Name: 
-      Entry: 10
-      Data: 18
-    - Name: 
-      Entry: 10
-      Data: 19
-    - Name: 
-      Entry: 10
-      Data: 20
-    - Name: 
-      Entry: 10
-      Data: 21
-    - Name: 
-      Entry: 10
-      Data: 22
-    - Name: 
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 10
-      Data: 17
-    - Name: 
-      Entry: 10
-      Data: 18
-    - Name: 
-      Entry: 10
-      Data: 19
-    - Name: 
-      Entry: 10
-      Data: 20
-    - Name: 
-      Entry: 10
-      Data: 21
-    - Name: 
-      Entry: 10
-      Data: 22
-    - Name: 
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 10
-      Data: 17
-    - Name: 
-      Entry: 10
-      Data: 18
-    - Name: 
-      Entry: 10
-      Data: 19
-    - Name: 
-      Entry: 10
-      Data: 20
-    - Name: 
-      Entry: 10
-      Data: 21
-    - Name: 
-      Entry: 10
-      Data: 22
-    - Name: 
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 10
       Data: 17
     - Name: 
       Entry: 10
@@ -431,6 +271,9 @@ MonoBehaviour:
       Data: 32
     - Name: 
       Entry: 10
+      Data: 32
+    - Name: 
+      Entry: 10
       Data: 33
     - Name: 
       Entry: 10
@@ -449,115 +292,10 @@ MonoBehaviour:
       Data: 38
     - Name: 
       Entry: 10
-      Data: 38
-    - Name: 
-      Entry: 10
       Data: 39
     - Name: 
       Entry: 10
       Data: 40
-    - Name: 
-      Entry: 10
-      Data: 41
-    - Name: 
-      Entry: 10
-      Data: 42
-    - Name: 
-      Entry: 10
-      Data: 43
-    - Name: 
-      Entry: 10
-      Data: 44
-    - Name: 
-      Entry: 10
-      Data: 45
-    - Name: 
-      Entry: 10
-      Data: 46
-    - Name: 
-      Entry: 10
-      Data: 47
-    - Name: 
-      Entry: 10
-      Data: 47
-    - Name: 
-      Entry: 10
-      Data: 47
-    - Name: 
-      Entry: 10
-      Data: 47
-    - Name: 
-      Entry: 10
-      Data: 47
-    - Name: 
-      Entry: 10
-      Data: 47
-    - Name: 
-      Entry: 10
-      Data: 47
-    - Name: 
-      Entry: 10
-      Data: 48
-    - Name: 
-      Entry: 10
-      Data: 48
-    - Name: 
-      Entry: 10
-      Data: 48
-    - Name: 
-      Entry: 10
-      Data: 48
-    - Name: 
-      Entry: 10
-      Data: 48
-    - Name: 
-      Entry: 10
-      Data: 48
-    - Name: 
-      Entry: 10
-      Data: 48
-    - Name: 
-      Entry: 10
-      Data: 49
-    - Name: 
-      Entry: 10
-      Data: 49
-    - Name: 
-      Entry: 10
-      Data: 49
-    - Name: 
-      Entry: 10
-      Data: 49
-    - Name: 
-      Entry: 10
-      Data: 49
-    - Name: 
-      Entry: 10
-      Data: 49
-    - Name: 
-      Entry: 10
-      Data: 49
-    - Name: 
-      Entry: 10
-      Data: 50
-    - Name: 
-      Entry: 10
-      Data: 50
-    - Name: 
-      Entry: 10
-      Data: 50
-    - Name: 
-      Entry: 10
-      Data: 50
-    - Name: 
-      Entry: 10
-      Data: 50
-    - Name: 
-      Entry: 10
-      Data: 50
-    - Name: 
-      Entry: 10
-      Data: 50
     - Name: 
       Entry: 13
       Data: 

@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f79c5bd36ee7b4eb635bc06f088b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configSO: {fileID: 11400000, guid: e3095691a2f3109458077ecb23fc2aee, type: 2}
+  configSO: {fileID: 11400000, guid: c17198ba29547164da3cec05df5ab414, type: 2}
   ShaderFile: {fileID: 102900000, guid: f137cae197f6bc84faca79801c8ab724, type: 3}
   ShaderList:
   - {fileID: 0}
