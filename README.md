@@ -31,7 +31,12 @@ Also special thanks to https://github.com/Yu-ki016
 
 ## FAQ
 1. Q: How to add hair highlight texture?
+
    A: Go to "/Texture2D" and look for the image that ends with "_hir_sph.png" for the model of your choice, copy and paste the "m_hir" hair material, then hook up the reference and save it.
+
+2. Q: How to update the props texture, such as glasses?
+
+   A: Go to "/Texture2D" and search for "prp", choose the image that ends with "_prp_sph.png", replace the original texture path then save it.
 
 ## Credits
 - Asset decryption https://github.com/nijinekoyo/Gakuen-idolmaster-ab-decrypt
