@@ -338,15 +338,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f79c5bd36ee7b4eb635bc06f088b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  configSO: {fileID: 11400000, guid: e3095691a2f3109458077ecb23fc2aee, type: 2}
   ShaderFile: {fileID: 102900000, guid: f137cae197f6bc84faca79801c8ab724, type: 3}
-  FaceFile: {fileID: 102900000, guid: f257ca033c609a54d8a1bf8311ce13d5, type: 3}
-  HairFile: {fileID: 102900000, guid: 33ffd1651e1594e45b16a26fa340a8cd, type: 3}
-  BodyFile: {fileID: 102900000, guid: 27518d55c5fd7a6468555a495c5142b7, type: 3}
-  ShaderList: []
+  ShaderList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Body: {fileID: 0}
   Face: {fileID: 0}
   Hair: {fileID: 0}
-  AssetHolder: []
+  AssetHolder:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ConnectBone: {fileID: 0}
   DirectionalLight: {fileID: 705507994}
   MatCapParam: {r: 0, g: 0, b: 0.54901963, a: 0}

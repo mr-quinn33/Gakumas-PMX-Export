@@ -1,0 +1,566 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
+  m_Name: fktn
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 102900000, guid: f257ca033c609a54d8a1bf8311ce13d5, type: 3}
+    - {fileID: 102900000, guid: a8686c4ad3b1285429cb48bebbeaf72e, type: 3}
+    - {fileID: 102900000, guid: 33ffd1651e1594e45b16a26fa340a8cd, type: 3}
+    - {fileID: 102900000, guid: c077dacd20d3a684e9fa9e328d94e187, type: 3}
+    - {fileID: 102900000, guid: 84587c2b05be7c943ad3b670e195166f, type: 3}
+    - {fileID: 102900000, guid: 9fe2d8ff38884ee4dba2609341d1bd41, type: 3}
+    - {fileID: 102900000, guid: b4900932cecfd624ab92b7dc7318938f, type: 3}
+    - {fileID: 102900000, guid: 73fc62497f8c5404b8586230554cdd55, type: 3}
+    - {fileID: 102900000, guid: b8b15621ee223d541b26f2c2e7bba769, type: 3}
+    - {fileID: 102900000, guid: 983585c69a876d9438b61c1ba623da90, type: 3}
+    - {fileID: 102900000, guid: 256dc7d86b26d9047a422b5b8118478e, type: 3}
+    - {fileID: 102900000, guid: 64aec8024da56f44596da8fc91d916ce, type: 3}
+    - {fileID: 102900000, guid: ca5b4d66ef080354db6bc163c4c34f32, type: 3}
+    - {fileID: 102900000, guid: fe7b110b1619e33468845f4e9e299147, type: 3}
+    - {fileID: 102900000, guid: c642a5c0b35ed144fa4ee9288eae110f, type: 3}
+    - {fileID: 102900000, guid: 7a52e2d60d00ace4596ff7e80f75c24b, type: 3}
+    - {fileID: 102900000, guid: b84be71fcfd4d1842b88773718fb4915, type: 3}
+    - {fileID: 102900000, guid: 5abe77e5eff57914188bb19aef1dcf67, type: 3}
+    - {fileID: 102900000, guid: 22281ef86fc14e74bb1a9b6c616d991e, type: 3}
+    - {fileID: 102900000, guid: bbe9af8fa8e065a4391b6f76cacc54ce, type: 3}
+    - {fileID: 102900000, guid: 779fc9b697fffa6418df49d7a4935365, type: 3}
+    - {fileID: 102900000, guid: 70b489bd4fc6c0847929baca32d8414e, type: 3}
+    - {fileID: 102900000, guid: f76c6fda6e9cb0b41a164f77f55f3020, type: 3}
+    - {fileID: 102900000, guid: 27518d55c5fd7a6468555a495c5142b7, type: 3}
+    - {fileID: 102900000, guid: e5c71fb3838561f49b07c605bdfd0321, type: 3}
+    - {fileID: 102900000, guid: 4c405e01e67ea8d4caaf74209aa476c3, type: 3}
+    - {fileID: 102900000, guid: 747434ff2a304524d8906b72ddbbf06d, type: 3}
+    - {fileID: 102900000, guid: 5d241136c61f35249afd1300e782cb71, type: 3}
+    - {fileID: 102900000, guid: 70b7b1b0a9488a345ac67a3783c81c5c, type: 3}
+    - {fileID: 102900000, guid: 37c9909b05c1996489f4efc794bbb5ce, type: 3}
+    - {fileID: 102900000, guid: 059a321d0458e684898162de826290b2, type: 3}
+    - {fileID: 102900000, guid: 721cca8b27e7d5e4fac64e2ad0f422bf, type: 3}
+    - {fileID: 102900000, guid: b16c179823f34d04a91e79062d660b99, type: 3}
+    - {fileID: 102900000, guid: 84e9b2497fc49f84a81a52d71192e7d8, type: 3}
+    - {fileID: 102900000, guid: c68f25f0120204645b41390692c25d91, type: 3}
+    - {fileID: 102900000, guid: 342fc9b2869dd3547a6fac66d62805c5, type: 3}
+    - {fileID: 102900000, guid: 2e0d14899ee28df4cb561b6cce05d246, type: 3}
+    - {fileID: 102900000, guid: a02651c7ee84556499fd43e2f8a25a3a, type: 3}
+    - {fileID: 102900000, guid: 5c1a57d39ce6e634984f28d141994cb1, type: 3}
+    - {fileID: 102900000, guid: 585f343e75c5a0949b4917a04a4ee548, type: 3}
+    - {fileID: 102900000, guid: fe33371eb5879e843b5dc6267f8c1306, type: 3}
+    - {fileID: 102900000, guid: 75c18a2e9e0f7ed46bbceec3b7cf3dab, type: 3}
+    - {fileID: 102900000, guid: 40c2a11501f4a954eb853b47919539b5, type: 3}
+    - {fileID: 102900000, guid: f8b8d085067a73e43b95bb81af4c981b, type: 3}
+    - {fileID: 102900000, guid: 02e7ff0b260a31d48a66e945bfc6058d, type: 3}
+    - {fileID: 102900000, guid: b7a02a9b12f571048b3595ed46d32a77, type: 3}
+    - {fileID: 102900000, guid: 03e6eb52e5b29474bb52831a39d47055, type: 3}
+    - {fileID: 102900000, guid: d539a3ab5ec8fd344aac56b549e12985, type: 3}
+    - {fileID: 102900000, guid: b176fd5045f9913498b7da1f0e0c2856, type: 3}
+    - {fileID: 102900000, guid: fc5aa01b3f349714cae5226a3e1d5f1b, type: 3}
+    - {fileID: 102900000, guid: 68d7b36565493ad4da51aa8221c7f586, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: configTable
+      Entry: 7
+      Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
+    - Name: 
+      Entry: 12
+      Data: 159
+    - Name: ranks
+      Entry: 1
+      Data: 3|53
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 12
+    - Name: 
+      Entry: 10
+      Data: 12
+    - Name: 
+      Entry: 10
+      Data: 13
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 14
+    - Name: 
+      Entry: 10
+      Data: 15
+    - Name: 
+      Entry: 10
+      Data: 16
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 17
+    - Name: 
+      Entry: 10
+      Data: 18
+    - Name: 
+      Entry: 10
+      Data: 19
+    - Name: 
+      Entry: 10
+      Data: 20
+    - Name: 
+      Entry: 10
+      Data: 21
+    - Name: 
+      Entry: 10
+      Data: 22
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 17
+    - Name: 
+      Entry: 10
+      Data: 18
+    - Name: 
+      Entry: 10
+      Data: 19
+    - Name: 
+      Entry: 10
+      Data: 20
+    - Name: 
+      Entry: 10
+      Data: 21
+    - Name: 
+      Entry: 10
+      Data: 22
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 17
+    - Name: 
+      Entry: 10
+      Data: 18
+    - Name: 
+      Entry: 10
+      Data: 19
+    - Name: 
+      Entry: 10
+      Data: 20
+    - Name: 
+      Entry: 10
+      Data: 21
+    - Name: 
+      Entry: 10
+      Data: 22
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 17
+    - Name: 
+      Entry: 10
+      Data: 18
+    - Name: 
+      Entry: 10
+      Data: 19
+    - Name: 
+      Entry: 10
+      Data: 20
+    - Name: 
+      Entry: 10
+      Data: 21
+    - Name: 
+      Entry: 10
+      Data: 22
+    - Name: 
+      Entry: 10
+      Data: 23
+    - Name: 
+      Entry: 10
+      Data: 24
+    - Name: 
+      Entry: 10
+      Data: 25
+    - Name: 
+      Entry: 10
+      Data: 26
+    - Name: 
+      Entry: 10
+      Data: 27
+    - Name: 
+      Entry: 10
+      Data: 28
+    - Name: 
+      Entry: 10
+      Data: 29
+    - Name: 
+      Entry: 10
+      Data: 30
+    - Name: 
+      Entry: 10
+      Data: 31
+    - Name: 
+      Entry: 10
+      Data: 32
+    - Name: 
+      Entry: 10
+      Data: 33
+    - Name: 
+      Entry: 10
+      Data: 34
+    - Name: 
+      Entry: 10
+      Data: 35
+    - Name: 
+      Entry: 10
+      Data: 36
+    - Name: 
+      Entry: 10
+      Data: 37
+    - Name: 
+      Entry: 10
+      Data: 38
+    - Name: 
+      Entry: 10
+      Data: 38
+    - Name: 
+      Entry: 10
+      Data: 39
+    - Name: 
+      Entry: 10
+      Data: 40
+    - Name: 
+      Entry: 10
+      Data: 41
+    - Name: 
+      Entry: 10
+      Data: 42
+    - Name: 
+      Entry: 10
+      Data: 43
+    - Name: 
+      Entry: 10
+      Data: 44
+    - Name: 
+      Entry: 10
+      Data: 45
+    - Name: 
+      Entry: 10
+      Data: 46
+    - Name: 
+      Entry: 10
+      Data: 47
+    - Name: 
+      Entry: 10
+      Data: 47
+    - Name: 
+      Entry: 10
+      Data: 47
+    - Name: 
+      Entry: 10
+      Data: 47
+    - Name: 
+      Entry: 10
+      Data: 47
+    - Name: 
+      Entry: 10
+      Data: 47
+    - Name: 
+      Entry: 10
+      Data: 47
+    - Name: 
+      Entry: 10
+      Data: 48
+    - Name: 
+      Entry: 10
+      Data: 48
+    - Name: 
+      Entry: 10
+      Data: 48
+    - Name: 
+      Entry: 10
+      Data: 48
+    - Name: 
+      Entry: 10
+      Data: 48
+    - Name: 
+      Entry: 10
+      Data: 48
+    - Name: 
+      Entry: 10
+      Data: 48
+    - Name: 
+      Entry: 10
+      Data: 49
+    - Name: 
+      Entry: 10
+      Data: 49
+    - Name: 
+      Entry: 10
+      Data: 49
+    - Name: 
+      Entry: 10
+      Data: 49
+    - Name: 
+      Entry: 10
+      Data: 49
+    - Name: 
+      Entry: 10
+      Data: 49
+    - Name: 
+      Entry: 10
+      Data: 49
+    - Name: 
+      Entry: 10
+      Data: 50
+    - Name: 
+      Entry: 10
+      Data: 50
+    - Name: 
+      Entry: 10
+      Data: 50
+    - Name: 
+      Entry: 10
+      Data: 50
+    - Name: 
+      Entry: 10
+      Data: 50
+    - Name: 
+      Entry: 10
+      Data: 50
+    - Name: 
+      Entry: 10
+      Data: 50
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

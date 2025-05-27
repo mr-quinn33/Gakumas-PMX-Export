@@ -3,52 +3,7 @@ guid: b18a57dc99a556e47a65db42390d5b9b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: m_bdy
-    second: {fileID: 2100000, guid: 103917c7cde94d14aa45e2ee6c649c19, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: m_bdyco
-    second: {fileID: 2100000, guid: d10c88d6c62b3ec49be8ead27f4549cb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: m_ebs
-    second: {fileID: 2100000, guid: 1bb9936620f38b046885d522e17592ab, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: m_ehl
-    second: {fileID: 2100000, guid: 82559055df906c14586010b760243e9b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: m_eye
-    second: {fileID: 2100000, guid: 8fd5decbc106c6342b67cfddb0de405f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: m_fce
-    second: {fileID: 2100000, guid: 49cbe197d5c28da44bd92fe05b61b45e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: m_fcp
-    second: {fileID: 2100000, guid: 983aa6d761dff334cbe40835d490acee, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: m_hir
-    second: {fileID: 2100000, guid: e54116ccf6a1c7f4eb8c80dbc3d2d15c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: m_hirco
-    second: {fileID: 2100000, guid: 7c30a480d9823354fb7cd9577281f4cb, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

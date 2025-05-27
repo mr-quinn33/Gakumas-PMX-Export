@@ -9,7 +9,6 @@ using System.Linq;
 using UnityEngine;
 using static LibMMD.Model.Morph;
 using static LibMMD.Model.SkinningOperator;
-using Object = UnityEngine.Object;
 
 namespace UnityPMXExporter
 {
@@ -38,22 +37,23 @@ namespace UnityPMXExporter
             Debug.Log($"PMX Save at {path}");
         }
 
-        public static RawMMDModel ReadPMXModelFromGameObject(GameObject target, string[] textures, PMXModelConfig config)
+        private static RawMMDModel ReadPMXModelFromGameObject(GameObject target, string[] textures, PMXModelConfig config)
         {
-            RawMMDModel model = new RawMMDModel();
+            var model = new RawMMDModel();
 
             model.Name = config.Name;
             model.NameEn = config.NameEn;
             model.Description = config.Description;
             model.DescriptionEn = config.DescriptionEn;
 
-            //Rean Bones
-            var rootBone = target.transform;
-            List<Transform> bones = new List<Transform>(rootBone.GetComponentsInChildren<Transform>());
+            //Read Bones
+            Transform rootBone = target.transform;
+            //var bones = new List<Transform>(rootBone.GetComponentsInChildren<Transform>());
+            var bones = new List<Transform>(GetChildrenTransform(rootBone, ExcludeChildrenTransform));
 
             //Read vertices And triangles
-            List<Renderer> renderers = new List<Renderer>(target.GetComponentsInChildren<Renderer>());
-            List<int> triangles = new List<int>();
+            var renderers = new List<Renderer>(target.GetComponentsInChildren<Renderer>());
+            var triangles = new List<int>();
             model.Vertices = ReadVerticesAndTriangles(renderers, bones, ref triangles, target.transform);
             model.TriangleIndexes = triangles.ToArray();
 
@@ -66,10 +66,32 @@ namespace UnityPMXExporter
             model.Parts = ReadPartMaterials(renderers, model);
             model.Bones = ReadMMDBones(bones, rootBone);
             model.Morphs = ReadMorph(renderers);
-            model.Rigidbodies = new MMDRigidBody[0];
-            model.Joints = new MMDJoint[0];
+            model.Rigidbodies = Array.Empty<MMDRigidBody>();
+            model.Joints = Array.Empty<MMDJoint>();
 
             return model;
+        }
+
+        private static Transform CreateNewRootTransform(Transform root)
+        {
+            var ikLeftFoot = root.Find("IKGoal_LeftFoot");
+            var ikLeftHand = root.Find("IKGoal_LeftHand");
+            var ikRightFoot = root.Find("IKGoal_RightFoot");
+            var ikRightHand = root.Find("IKGoal_RightHand");
+            var hips = root.Find("Reference/Hips");
+            var pelvis = hips.Find("Pelvis");
+            var leftLeg = pelvis.Find("LeftUpLeg/LeftLeg");
+            var rightLeg = pelvis.Find("RightUpLeg/RightLeg");
+            var center = new GameObject("Center").transform;
+            center.position = 0.25f * leftLeg.position + 0.25f * rightLeg.position + 0.5f * pelvis.position;
+            center.rotation = Quaternion.identity;
+            root.DetachChildren();
+            ikLeftFoot.SetParent(center);
+            ikLeftHand.SetParent(center);
+            ikRightFoot.SetParent(center);
+            ikRightHand.SetParent(center);
+            hips.SetParent(center);
+            return center;
         }
 
         public static Vector3[] Vec4ToVec3(Vector4[] vector4s)
@@ -226,6 +248,19 @@ namespace UnityPMXExporter
             {"右手首ＩＫ", Vector3.back * 0.1f}
         };
 
+        private static readonly Dictionary<string, Vector3> mmdChildOffsetMap = new()
+        {
+            {"下半身", Vector3.down * 0.1f},
+            {"左つま先", Vector3.forward * 0.1f},
+            {"右つま先", Vector3.forward * 0.1f},
+        };
+        
+        private static readonly Dictionary<string, Vector3> mmdChildOffsetMapEn = new()
+        {
+            {"Head_Hair", Vector3.up * 0.1f},
+            {"FacialDecal", Vector3.forward * 0.1f}
+        };
+
         private static readonly Dictionary<string, string> mmdParentChildNameMap = new()
         {
             {"全ての親", "センター"},
@@ -257,7 +292,11 @@ namespace UnityPMXExporter
             "左親指０",
             "右親指０",
             "左足ＩＫ親",
-            "右足ＩＫ親"
+            "左足ＩＫ",
+            "左つま先ＩＫ",
+            "右足ＩＫ親",
+            "右足ＩＫ",
+            "右つま先ＩＫ"
         };
 
         private static readonly HashSet<string> ControllableBones = new()
@@ -294,13 +333,85 @@ namespace UnityPMXExporter
             "右小指３",
         };
 
-        private static void RefreshParentChildIndex(List<Bone> bones, IReadOnlyDictionary<string, string> parentChildMap)
+        private static readonly HashSet<string> ExcludeChildrenTransform = new()
+        {
+            "Geo_Body",
+            "IKBody",
+            "IKGoal_LeftHand",
+            "IKGoal_RightHand",
+            "IKHint_LeftElbow",
+            "IKHint_LeftKnee",
+            "IKHint_RightElbow",
+            "IKHint_RightKnee",
+            "LookAt",
+            "Move",
+            "BodyScaleRatio_DIS",
+            "LeftLeg_H",
+            "LeftLegSkin1_S",
+            "LeftUpLeg_H",
+            "LeftUpLeg_Roll_H",
+            "RightLeg_H",
+            "RightLegSkin1_S",
+            "RightUpLeg_H",
+            "RightUpLeg_Roll_H",
+            "LeftArm_H",
+            "LeftArm_Roll_H",
+            "LeftForeArm_H",
+            "LeftForeArm_Roll_H",
+            "LeftHand1_E",
+            "LeftHand1_I",
+            "LeftHand2_I",
+            "LeftHand_H",
+            "FaceScaleRatio_DIS",
+            "FacialDecal",
+            "VLSkinningRenderer",
+            "Geo_Hair",
+            "Geo_HairProp",
+            "HairScaleRatio_DIS",
+            "Head1_E",
+            "Head1_I",
+            "Head2_E",
+            "Head2_I",
+            "RightArm_H",
+            "RightArm_Roll_H",
+            "RightForeArm_H",
+            "RightForeArm_Roll_H",
+            "RightHand1_E",
+            "RightHand1_I",
+            "RightHand2_I",
+            "RightHand_H",
+            "Reference1_I",
+            "Reference2_I"
+        };
+
+        private static IEnumerable<Transform> GetChildrenTransform(Component root, ICollection<string> except)
+        {
+            var childrenTransform = root.GetComponentsInChildren<Transform>();
+            return childrenTransform.Except(childrenTransform.Where(child => except.Contains(child.name)).SelectMany(child => child.GetComponentsInChildren<Transform>()));
+        }
+
+        private static void RefreshParentChildIndex(List<Bone> bones,
+            IReadOnlyDictionary<string, string> parentChildMap,
+            IReadOnlyDictionary<string, Vector3> childOffsetMap,
+            IReadOnlyDictionary<string, Vector3> childOffsetMapEn)
         {
             foreach (Bone bone in bones)
             {
                 if (parentChildMap.TryGetValue(bone.Name, out string childName))
                 {
                     bone.ChildBoneVal.Index = bones.FindIndex(childBone => childBone.Name.Equals(childName));
+                }
+
+                if (childOffsetMap.TryGetValue(bone.Name, out Vector3 offset))
+                {
+                    bone.ChildBoneVal.ChildUseId = false;
+                    bone.ChildBoneVal.Offset = offset;
+                }
+                
+                if (childOffsetMapEn.TryGetValue(bone.NameEn, out Vector3 offsetEn))
+                {
+                    bone.ChildBoneVal.ChildUseId = false;
+                    bone.ChildBoneVal.Offset = offsetEn;
                 }
             }
         }
@@ -337,7 +448,7 @@ namespace UnityPMXExporter
             }
         }
 
-        private static string GetMMDBoneName(Object transform)
+        private static string GetMMDBoneName(Transform transform)
         {
             return mmdBoneMap.TryGetValue(transform.name, out string boneName) ? boneName : transform.name;
         }
@@ -345,7 +456,7 @@ namespace UnityPMXExporter
         private static Bone[] ReadMMDBones(List<Transform> bones, Transform root)
         {
             var boneList = ReadBones(bones, root);
-            RefreshParentChildIndex(boneList, mmdParentChildNameMap);
+            RefreshParentChildIndex(boneList, mmdParentChildNameMap, mmdChildOffsetMap, mmdChildOffsetMapEn);
             RefreshChildParentIndex(boneList, mmdChildParentNameMap);
             RefreshBoneProperties(boneList);
             return boneList.ToArray();
@@ -354,12 +465,13 @@ namespace UnityPMXExporter
         private static List<Bone> ReadBones(List<Transform> bonelist, Transform rootBone)
         {
             var pmxbones = new List<Bone>();
+            var createIKBoneList = new HashSet<Transform>();
             foreach (Transform bone in bonelist)
             {
                 var pmxbone = new Bone
                 {
                     Name = bone == rootBone ? "全ての親" : GetMMDBoneName(bone),
-                    NameEn = bone == rootBone ? "root" : bone.name,
+                    NameEn = bone.name,
                     Position = bone.position,
                     ParentIndex = bonelist.IndexOf(bone.parent),
                     TransformLevel = 0,
@@ -377,29 +489,40 @@ namespace UnityPMXExporter
                 if (pmxbone.HasIk)
                 {
                     int ikTargetIndex = bonelist.FindIndex(target => target.name.Equals(pmxbone.NameEn[7..]));
-                    pmxbone.TransformLevel = 1;
-                    pmxbone.ChildBoneVal.ChildUseId = false;
                     pmxbone.Movable = true;
+                    pmxbone.TransformLevel = 1;
+                    pmxbone.ParentIndex = -1;
+                    pmxbone.ChildBoneVal.ChildUseId = false;
                     pmxbone.ChildBoneVal.Offset = mmdIKBoneOffsetMap[pmxbone.Name];
                     pmxbone.IkInfoVal = new Bone.IkInfo
                     {
                         IkTargetIndex = ikTargetIndex,
                         CcdIterateLimit = 40,
-                        CcdAngleLimit = 114.5916f,
+                        CcdAngleLimit = 2,
                         IkLinks = new Bone.IkLink[]
                         {
                             new()
                             {
-                                LinkIndex = ikTargetIndex - 1
+                                LinkIndex = bonelist.IndexOf(bonelist[ikTargetIndex].parent)
                             },
                             new()
                             {
-                                LinkIndex = ikTargetIndex - 2
+                                LinkIndex = bonelist.IndexOf(bonelist[ikTargetIndex].parent.parent)
                             }
                         }
                     };
                 }
+
+                if (mmdCreateIKBoneMap.ContainsKey(bone.name))
+                {
+                    createIKBoneList.Add(bone);
+                }
                 
+                pmxbones.Add(pmxbone);
+            }
+
+            foreach (Transform bone in createIKBoneList)
+            {
                 if (mmdCreateIKBoneMap.TryGetValue(bone.name, out string iKBoneName))
                 {
                     int ikTargetIndex = bonelist.FindIndex(target => target.name.Equals(bone.name));
@@ -424,20 +547,18 @@ namespace UnityPMXExporter
                         {
                             IkTargetIndex = ikTargetIndex,
                             CcdIterateLimit = 3,
-                            CcdAngleLimit = 229.1831f,
+                            CcdAngleLimit = 4,
                             IkLinks = new Bone.IkLink[]
                             {
                                 new()
                                 {
-                                    LinkIndex = ikTargetIndex - 1
+                                    LinkIndex = bonelist.IndexOf(bonelist[ikTargetIndex].parent)
                                 }
                             }
                         }
                     };
                     pmxbones.Add(ikBone);
                 }
-                
-                pmxbones.Add(pmxbone);
             }
             
             return pmxbones;
@@ -445,8 +566,8 @@ namespace UnityPMXExporter
 
         private static Part[] ReadPartMaterials(List<Renderer> renderers, RawMMDModel model)
         {
-            List<Part> parts = new List<Part>();
-            int baseShift = 0;
+            var parts = new List<Part>();
+            var baseShift = 0;
 
             foreach (Renderer renderer in renderers)
             {
@@ -469,42 +590,66 @@ namespace UnityPMXExporter
                 var materials = new List<Material>(renderer.sharedMaterials);
                 for (int i = 0; i < mesh.subMeshCount; i++)
                 {
-                    var material = (i < materials.Count ? materials[i] : materials[materials.Count - 1]);
+                    Material material = i < materials.Count ? materials[i] : materials[^1];
                     var part = new Part();
-                    var mat = new MMDMaterial();
-                    part.Material = mat;
-                    mat.Name = mat.NameEn = material.name.Replace(" (Instance)", "");
-                    mat.DiffuseColor = Color.white;
-                    mat.SpecularColor = Color.clear;
-                    mat.AmbientColor = Color.white * 0.5f;
-                    mat.Shiness = 5;
-                    mat.CastSelfShadow = true;
-                    mat.DrawGroundShadow = true;
-                    mat.DrawSelfShadow = true;
-                    mat.EdgeColor = Color.black;
-                    mat.EdgeSize = 0.4f;
-                    var propNames = material.GetTexturePropertyNames();
-                    if (propNames.Length > 0)
-                    {
-                        var main_tex = material.GetTexture(propNames[0]);
-                        var tex = model.TextureList.Find(t => t.TexturePath.Contains($"/{main_tex.name}.png"));
-                        if (tex != null)
-                        {
-                            mat.Texture = tex;
-                        }
-                        else if (model.TextureList.Count > 0)
-                        {
-                            mat.Texture = model.TextureList[0];
-                        }
-                    }
-                    mat.MetaInfo = "";
+                    //MMDMaterial mat = CreateNewMMDMaterialForPart(model, part, material);
+                    CreateNewMMDMaterialForPart(model, part, material);
                     part.BaseShift = baseShift + mesh.GetSubMesh(i).indexStart;
                     part.TriangleIndexNum = mesh.GetSubMesh(i).indexCount;
                     parts.Add(part);
+                    
+                    // TODO: debug here
+                    /*
+                    const string hairColorAlpha = "_hir_col_alp.png";
+                    const string hairSphere = "_hir_sph.png";
+                    if (mat.Texture.TexturePath.EndsWith(hairColorAlpha))
+                    {
+                        var newPart = new Part();
+                        string newPath = mat.Texture.TexturePath.Replace(hairColorAlpha, hairSphere);
+                        MMDMaterial newMat = CreateNewMMDMaterialForPart(model, newPart, material);
+                        newMat.Texture.TexturePath = newPath;
+                        newPart.BaseShift = baseShift + mesh.GetSubMesh(i).indexStart;
+                        newPart.TriangleIndexNum = mesh.GetSubMesh(i).indexCount;
+                        parts.Add(newPart);
+                    }
+                    */
                 }
+                
                 baseShift += mesh.triangles.Length;
             }
+            
             return parts.ToArray();
+        }
+
+        private static void CreateNewMMDMaterialForPart(RawMMDModel model, Part part, Material material)
+        {
+            var mat = new MMDMaterial();
+            part.Material = mat;
+            mat.Name = mat.NameEn = material.name.Replace(" (Instance)", "");
+            mat.DiffuseColor = Color.white;
+            mat.SpecularColor = Color.clear;
+            mat.AmbientColor = Color.white * 0.5f;
+            mat.Shiness = 5;
+            mat.CastSelfShadow = true;
+            mat.DrawGroundShadow = true;
+            mat.DrawSelfShadow = true;
+            mat.EdgeColor = Color.black;
+            mat.EdgeSize = 0.4f;
+            var propNames = material.GetTexturePropertyNames();
+            if (propNames.Length > 0)
+            {
+                var main_tex = material.GetTexture(propNames[0]);
+                var tex = model.TextureList.Find(t => t.TexturePath.Contains($"/{main_tex.name}.png"));
+                if (tex != null)
+                {
+                    mat.Texture = tex;
+                }
+                else if (model.TextureList.Count > 0)
+                {
+                    mat.Texture = model.TextureList[0];
+                }
+            }
+            mat.MetaInfo = "";
         }
 
         private static Vertex[] ReadVerticesAndTriangles(List<Renderer> renderers, List<Transform> bones, ref List<int> triangleList, Transform root)
@@ -534,21 +679,20 @@ namespace UnityPMXExporter
                         vertex.Normal = normals[i];
                         vertex.UvCoordinate = uv[i];
 
-                        vertex.ExtraUvCoordinate = new Vector4[3]
+                        vertex.ExtraUvCoordinate = new Vector4[]
                         {
                         uv1.Length > 0 ? uv1[i] : Vector2.zero,
                         uv2.Length > 0 ? uv2[i] : Vector2.zero,
                         colors.Length > 0 ? colors[i] : Color.clear
                         };
 
-                        vertex.SkinningOperator = new SkinningOperator() { Type = SkinningType.SkinningBdef1 };
-                        vertex.SkinningOperator.Param = new Bdef1() { BoneId = bones.IndexOf(renderer.transform) };
+                        vertex.SkinningOperator = new SkinningOperator{Type = SkinningType.SkinningBdef1};
+                        vertex.SkinningOperator.Param = new Bdef1{BoneId = bones.IndexOf(renderer.transform)};
                         vertex.EdgeScale = 1;
                         verticesList.Add(vertex);
                     }
-
-
-                    foreach (var triangle in mesh.triangles)
+                    
+                    foreach (var triangle in triangles)
                     {
                         triangleList.Add(triangle + vertexOffset);
                     }
@@ -572,7 +716,6 @@ namespace UnityPMXExporter
                     var uv1 = mesh.uv2;
                     var uv2 = mesh.uv3;
                     var colors = mesh.colors;
-                    var skinbone = smr.bones;
                     var skinbones = smr.bones;
                     var boneCounts = smr.sharedMesh.GetBonesPerVertex();
                     var weights = smr.sharedMesh.boneWeights;
@@ -605,7 +748,7 @@ namespace UnityPMXExporter
                             default:
                             case 1:
                                 vertex.SkinningOperator = new SkinningOperator() { Type = SkinningType.SkinningBdef1 };
-                                vertex.SkinningOperator.Param = new Bdef1() { BoneId = GetBoneIndex(bones, skinbone[boneWeight.boneIndex0]) };
+                                vertex.SkinningOperator.Param = new Bdef1() { BoneId = GetBoneIndex(bones, skinbones[boneWeight.boneIndex0]) };
                                 break;
 
                             case 2:
@@ -613,8 +756,8 @@ namespace UnityPMXExporter
                                 vertex.SkinningOperator.Param = new Bdef2()
                                 {
                                     BoneId = new int[]{
-                                    GetBoneIndex(bones, skinbone[boneWeight.boneIndex0]),
-                                    GetBoneIndex(bones, skinbone[boneWeight.boneIndex1]),
+                                    GetBoneIndex(bones, skinbones[boneWeight.boneIndex0]),
+                                    GetBoneIndex(bones, skinbones[boneWeight.boneIndex1]),
                                 },
                                     BoneWeight = boneWeight.weight0
                                 };
@@ -626,10 +769,10 @@ namespace UnityPMXExporter
                                 vertex.SkinningOperator.Param = new Bdef4()
                                 {
                                     BoneId = new int[]{
-                                    GetBoneIndex(bones, skinbone[boneWeight.boneIndex0]),
-                                    GetBoneIndex(bones, skinbone[boneWeight.boneIndex1]),
-                                    GetBoneIndex(bones, skinbone[boneWeight.boneIndex2]),
-                                    GetBoneIndex(bones, skinbone[boneWeight.boneIndex3]),
+                                    GetBoneIndex(bones, skinbones[boneWeight.boneIndex0]),
+                                    GetBoneIndex(bones, skinbones[boneWeight.boneIndex1]),
+                                    GetBoneIndex(bones, skinbones[boneWeight.boneIndex2]),
+                                    GetBoneIndex(bones, skinbones[boneWeight.boneIndex3]),
                                 },
                                     BoneWeight = new float[]
                                     {
