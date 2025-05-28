@@ -32,11 +32,15 @@ Also special thanks to https://github.com/Yu-ki016
 ## FAQ
 1. Q: How to add hair highlight texture?
 
-   A: Go to "/Texture2D" and look for the image that ends with "_hir_sph.png" for the model of your choice, copy and paste the "m_hir" hair material, then hook up the reference and save it.
+   A: Go to "/Texture2D" and look for the image that ends with "_hir_sph.png" for the model of your choice, copy and paste the "m_hir" hair material, then hook up the reference and save it. If there's no such a file, run the batch script again or check the error message or search for the missing "_hhl.png" image and manually copy one from withing the directory then rename it.
 
 2. Q: How to update the props texture, such as glasses?
 
-   A: Go to "/Texture2D" and search for "prp", choose the image that ends with "_prp_sph.png", replace the original texture path then save it.
+   A: Go to "/Texture2D" and search for "prp", choose the image that ends with "_prp_sph.png", replace the original texture path then save it. If there's no such a file, try the same fix as Q1.
+
+3. Q: Console prints out Vulkan memory leak, what do I do with it?
+
+   A: Split your config file by copying and renaming to reduce it's size.
 
 ## Credits
 - Asset decryption https://github.com/nijinekoyo/Gakuen-idolmaster-ab-decrypt
