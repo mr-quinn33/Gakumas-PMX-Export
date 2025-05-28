@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
+  m_Name: hrnm_1
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 102900000, guid: 4a0dfb91f71aea244a0c901095d62c38, type: 3}
+    - {fileID: 102900000, guid: 8d0664733c70b564a861400ab87edbe3, type: 3}
+    - {fileID: 102900000, guid: b0792dd0361387a49abe6d8171029b1d, type: 3}
+    - {fileID: 102900000, guid: f5481affb76d1b344bc8a066144fb865, type: 3}
+    - {fileID: 102900000, guid: aedd4566243afcf42a2137ee10f86c02, type: 3}
+    - {fileID: 102900000, guid: bb58b9498e84a9640b6ea9906651eb67, type: 3}
+    - {fileID: 102900000, guid: 5ff3aed8cb0f5ae40a0b631685f62040, type: 3}
+    - {fileID: 102900000, guid: 172eb44584649214a8fd410b9a1ee9f8, type: 3}
+    - {fileID: 102900000, guid: 74d056e79d3ca454b8d50c04f1744872, type: 3}
+    - {fileID: 102900000, guid: fd776e79d08a7664aa99cc07edb353d3, type: 3}
+    - {fileID: 102900000, guid: 9be2ac693d2e0f44bba26920d86662a2, type: 3}
+    - {fileID: 102900000, guid: 79b2d0387a0b08b40852273782b6c5e3, type: 3}
+    - {fileID: 102900000, guid: 45481688fa92d26409d939583db5cceb, type: 3}
+    - {fileID: 102900000, guid: 32577937870a8b144bd62c5cd62879e1, type: 3}
+    - {fileID: 102900000, guid: ade5b4ff63de12344ad75293f6865143, type: 3}
+    - {fileID: 102900000, guid: c15af34f8e9774c41acd0b11fc4a7d00, type: 3}
+    - {fileID: 102900000, guid: f6a7ead9b810ef043b486d8e099e2d21, type: 3}
+    - {fileID: 102900000, guid: 072eccf03fd442549a68765d6923f0a0, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: configTable
+      Entry: 7
+      Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
+    - Name: 
+      Entry: 12
+      Data: 24
+    - Name: ranks
+      Entry: 1
+      Data: 3|8
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 10
+      Data: 12
+    - Name: 
+      Entry: 10
+      Data: 13
+    - Name: 
+      Entry: 10
+      Data: 14
+    - Name: 
+      Entry: 10
+      Data: 15
+    - Name: 
+      Entry: 10
+      Data: 16
+    - Name: 
+      Entry: 10
+      Data: 17
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
