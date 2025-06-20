@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
+  m_Name: shro_test_1
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 102900000, guid: b27c75adf2c037e4d86782d2ab0a318b, type: 3}
+    - {fileID: 102900000, guid: d11127529c611b64f9ca6baedc51e299, type: 3}
+    - {fileID: 102900000, guid: c43e679d64437bf408384f5260801af4, type: 3}
+    - {fileID: 102900000, guid: 61b702ab66d3736408e7252e63833b35, type: 3}
+    - {fileID: 102900000, guid: bed65a2114d6e454d8275e222fe680db, type: 3}
+    - {fileID: 102900000, guid: e1d13bb79398c0d4ba316775fd41ea67, type: 3}
+    - {fileID: 102900000, guid: 06de68ce00490c14aaa67fc6df9df351, type: 3}
+    - {fileID: 102900000, guid: 42aa8b486a3269146adbce8d904bafb3, type: 3}
+    - {fileID: 102900000, guid: 180eee612895fac46b54ab7400f1a6b5, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: configTable
+      Entry: 7
+      Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
+    - Name: 
+      Entry: 12
+      Data: 9
+    - Name: ranks
+      Entry: 1
+      Data: 3|3
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

@@ -23,14 +23,15 @@ public class ModelLoader : MonoBehaviour
 	public GameObject Body;
 	public GameObject Face;
 	public GameObject Hair;
+	public GameObject Mod;
 
 	public List<Object> AssetHolder = new();
 
 	public Transform ConnectBone;
 	public Light DirectionalLight;
 
-	[Button(nameof(Export), ButtonSizes.Medium, ButtonStyle.CompactBox)]
-	private void Export()
+	[Button("Export All", ButtonSizes.Medium, ButtonStyle.CompactBox)]
+	private void ExportAll()
 	{
 		AssetBundle.UnloadAllAssetBundles(true);
 		for (var i = 0; i < configSO.Size; i++)
@@ -41,14 +42,21 @@ public class ModelLoader : MonoBehaviour
 			AssetBundle.UnloadAllAssetBundles(true);
 		}
 	}
+	
+	[Button("Export First", ButtonSizes.Medium, ButtonStyle.CompactBox)]
+	private void ExportFirst()
+	{
+		Export(configSO, 0);
+	}
 
 	private void Export(ICharacterConfigSO config, int y)
 	{
-		(Object face, Object hair, Object body) = config[y];
-		Export(face, hair, body);
+		Object face = config.Face;
+		(Object mod, Object hair, Object body) = config[y];
+		Export(face, hair, body, mod);
 	}
 
-	private void Export(Object faceFile, Object hairFile, Object bodyFile)
+	private void Export(Object faceFile, Object hairFile, Object bodyFile, Object modFile = null)
 	{
 		if (AssetDatabase.GetAssetPath(ShaderFile) != "")
 		{
@@ -84,7 +92,7 @@ public class ModelLoader : MonoBehaviour
 			var face_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(faceFile));
 			foreach (var ab in face_ab.LoadAllAssets())
 			{
-				if (ab is GameObject go)
+				if (ab is GameObject go && modFile is null)
 				{
 					Face = Instantiate(go);
 					Face.name = Face.name.Replace("(Clone)", string.Empty);
@@ -161,6 +169,64 @@ public class ModelLoader : MonoBehaviour
 		{
 			Debug.Log($"HairFile {hairFile} is None !");
 		}
+		
+		if (modFile is not null && AssetDatabase.GetAssetPath(modFile) != "" && File.Exists(AssetDatabase.GetAssetPath(modFile)))
+		{
+			var mod_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(modFile));
+			foreach (var ab in mod_ab.LoadAllAssets())
+			{
+				if (ab is GameObject go)
+				{
+					Mod = Instantiate(go);
+					Mod.name = Mod.name.Replace("(Clone)", string.Empty);
+					var vl = Mod.GetComponentInChildren<VLActorFaceModel>();
+					var skinned = vl.gameObject.AddComponent<SkinnedMeshRenderer>();
+					var mesh = vl.mesh;
+					byte[] bonesPerVertex = new byte[mesh.vertexCount];
+					for (int i = 0; i < bonesPerVertex.Length; i++)
+					{
+						bonesPerVertex[i] = 1;
+					}
+					var weights = new BoneWeight1[mesh.vertexCount];
+					for (int i = 0; i < weights.Length; i++)
+					{
+						weights[i].boneIndex = 0;
+						weights[i].weight = 1;
+					}
+
+					var bonesPerVertexArray = new NativeArray<byte>(bonesPerVertex, Allocator.Temp);
+					var weightsArray = new NativeArray<BoneWeight1>(weights, Allocator.Temp);
+					mesh.SetBoneWeights(bonesPerVertexArray, weightsArray);
+
+					skinned.sharedMesh = vl.mesh;
+					skinned.bones = vl.bones;
+					mesh.bindposes = vl.bindposes;
+					foreach (var bs in vl.blendShapes)
+					{
+						var del_ver = new Vector3[mesh.vertexCount];
+						foreach (var ver in bs.blendShapeVertices)
+						{
+							del_ver[ver.vertIndex] = ver.position;
+						}
+						mesh.AddBlendShapeFrame(bs.blendShapeName, 1, del_ver, null, null);
+					}
+					skinned.localBounds = vl.localBounds;
+					skinned.rootBone = vl.rootBone;
+					skinned.materials = vl.sharedMaterials;
+					if (ConnectBone)
+					{
+						Mod.transform.SetParent(ConnectBone, false);
+						skinned.bones[0] = ConnectBone;
+						skinned.rootBone = ConnectBone;
+					}
+				}
+				AssetHolder.Add(ab);
+			}
+		}
+		else
+		{
+			Debug.Log($"ModFile {modFile} is None !");
+		}
 
 		var chrName = bodyFile.name.Substring(8, 4);
 		var subName = bodyFile.name.Substring(13, 4);
@@ -181,7 +247,7 @@ public class ModelLoader : MonoBehaviour
 			Debug.LogWarning($"Directory already exists: {path}");
 		}
 
-		if (!File.Exists(PMXPath) && Body && Face && Hair)
+		if (!File.Exists(PMXPath) && Body && (Face || Mod) && Hair)
 		{
 			var outPath = string.IsNullOrEmpty(name) ? $"{path}/Model.pmx" : PMXPath;
 			ModelExporter.ExportModel(Body, outPath, colorSpace: RenderTextureReadWrite.sRGB);

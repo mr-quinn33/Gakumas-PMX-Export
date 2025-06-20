@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
+  m_Name: kllj_extra
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 102900000, guid: 0a89ce185c5da684cac54baa15a99561, type: 3}
+    - {fileID: 102900000, guid: 7d20ef1baabb02f4cb0d75e7b169548a, type: 3}
+    - {fileID: 102900000, guid: 216bb87c416e5e94997787607b91b3b1, type: 3}
+    - {fileID: 102900000, guid: 2a4c9987007352349a9e047740d1f04e, type: 3}
+    - {fileID: 102900000, guid: 514ef53f4bf676c418fda6e2951373b4, type: 3}
+    - {fileID: 102900000, guid: 8523b3541e4233849aacf68d7818e3e2, type: 3}
+    - {fileID: 102900000, guid: 5b5e6103d3b68e143bade8d57a52622c, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: configTable
+      Entry: 7
+      Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
+    - Name: 
+      Entry: 12
+      Data: 9
+    - Name: ranks
+      Entry: 1
+      Data: 3|3
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

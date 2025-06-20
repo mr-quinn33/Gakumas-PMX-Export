@@ -46,7 +46,7 @@ public class PMXModelLoader
         }
         catch (Exception ex)
         {
-            UnityEngine.Debug.Log("アバターの作成に失敗しました");
+            UnityEngine.Debug.Log($"アバターの作成に失敗しました{ex.Message}");
             UnityEngine.Debug.Log(path);
 
             AvatarMaker avaterMaker = mmdModel.gameObject.GetComponent<AvatarMaker>();

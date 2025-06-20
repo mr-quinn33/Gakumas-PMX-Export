@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
+  m_Name: amao_1
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 102900000, guid: a3bf6e00ced0a11439a288451a32c9f0, type: 3}
+    - {fileID: 102900000, guid: eeafab946a8b4554b8682fb0861e397e, type: 3}
+    - {fileID: 102900000, guid: 57485b16afa6e0b4ca2bcb7c975dcd7c, type: 3}
+    - {fileID: 102900000, guid: 3f827260f7c10574bb2f67b5eed597f1, type: 3}
+    - {fileID: 102900000, guid: 4a46b4829801bf84c850b2b107ba1533, type: 3}
+    - {fileID: 102900000, guid: 21504c7a7d95c174a8b64c4024ead20b, type: 3}
+    - {fileID: 102900000, guid: 22fad2bd5382bf2438af1de18460f5ab, type: 3}
+    - {fileID: 102900000, guid: 8681a1315e5c08147b340dc7b1cf4510, type: 3}
+    - {fileID: 102900000, guid: e01b5d05cdc652746829084834ea9566, type: 3}
+    - {fileID: 102900000, guid: 6230567bc57fc794cbcd2b353a524f0d, type: 3}
+    - {fileID: 102900000, guid: bb2ae7b1f2e3f68438ecca2bd8f8a216, type: 3}
+    - {fileID: 102900000, guid: bef84192113a0dc4bbdac51e0e9c7af5, type: 3}
+    - {fileID: 102900000, guid: 682519d3f4c06fa448e02d9261735af7, type: 3}
+    - {fileID: 102900000, guid: 75fec28ba9e12514eb145ff779d3587b, type: 3}
+    - {fileID: 102900000, guid: fdbfe46ade7b6dc489fccb4cf63e02f0, type: 3}
+    - {fileID: 102900000, guid: 1e6b1e0e5a747c4419f27816b95e6879, type: 3}
+    - {fileID: 102900000, guid: 51fd55e11b548c0468e0cd9129cec33f, type: 3}
+    - {fileID: 102900000, guid: 34384ad5e2d9ac14fb7f61047412fa45, type: 3}
+    - {fileID: 102900000, guid: 1513e466d34da25448c6b467840fc664, type: 3}
+    - {fileID: 102900000, guid: 0ecb94d0bd609e44893f78f16c08759b, type: 3}
+    - {fileID: 102900000, guid: 52375ca0214d22942b0f630015a5f11c, type: 3}
+    - {fileID: 102900000, guid: 758d3145782ef30439afa2bdb0083e3d, type: 3}
+    - {fileID: 102900000, guid: 56f0704b08c5826448a2ea7dc0a1ebb4, type: 3}
+    - {fileID: 102900000, guid: 82a05bff4923b7f47ada9c5979114a0e, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: configTable
+      Entry: 7
+      Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
+    - Name: 
+      Entry: 12
+      Data: 39
+    - Name: ranks
+      Entry: 1
+      Data: 3|13
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 10
+      Data: 12
+    - Name: 
+      Entry: 10
+      Data: 13
+    - Name: 
+      Entry: 10
+      Data: 14
+    - Name: 
+      Entry: 10
+      Data: 15
+    - Name: 
+      Entry: 10
+      Data: 16
+    - Name: 
+      Entry: 10
+      Data: 17
+    - Name: 
+      Entry: 10
+      Data: 18
+    - Name: 
+      Entry: 10
+      Data: 19
+    - Name: 
+      Entry: 10
+      Data: 20
+    - Name: 
+      Entry: 10
+      Data: 21
+    - Name: 
+      Entry: 10
+      Data: 22
+    - Name: 
+      Entry: 10
+      Data: 23
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
