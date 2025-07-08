@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
+  m_Name: ttmr-cstm-0002
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 102900000, guid: dd614cfa48abfa64fb4cddfc619e84b4, type: 3}
+    - {fileID: 102900000, guid: 9fe01091d81016248847d0f1ede0f78d, type: 3}
+    - {fileID: 102900000, guid: f7952ff5a336d6f4089d7004a0b2f550, type: 3}
+    - {fileID: 102900000, guid: de7aa55ab70f3d146b668118c39f91d9, type: 3}
+    - {fileID: 102900000, guid: bf8acc79e658a904389bac6fc387a2c5, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: configTable
+      Entry: 7
+      Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: ranks
+      Entry: 1
+      Data: 3|2
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  face: {fileID: 102900000, guid: 4f31e078eba8c1745ab5c03a35f1fd43, type: 3}

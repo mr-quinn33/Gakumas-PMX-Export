@@ -10,28 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
-  m_Name: hrnm_2
+  m_Name: amao-cstm-0000
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 102900000, guid: 4a0dfb91f71aea244a0c901095d62c38, type: 3}
-    - {fileID: 102900000, guid: b0792dd0361387a49abe6d8171029b1d, type: 3}
-    - {fileID: 102900000, guid: e0594439bd7df3640a22d71bc2a1da2e, type: 3}
-    - {fileID: 102900000, guid: 0e5ff3996503a97498354be79a342e97, type: 3}
-    - {fileID: 102900000, guid: 5b349b2a3fdc5b046929bc25891acebb, type: 3}
-    - {fileID: 102900000, guid: f5481affb76d1b344bc8a066144fb865, type: 3}
-    - {fileID: 102900000, guid: dfc34bc71836bae4bb05a7374eb27bb6, type: 3}
-    - {fileID: 102900000, guid: 9122c7b27ae410c468317b1e788373be, type: 3}
-    - {fileID: 102900000, guid: 328e9d3c7de4ce34ea41c41e3f5befbc, type: 3}
-    - {fileID: 102900000, guid: f37bd5244d054f14c89c4282dcb48eb6, type: 3}
-    - {fileID: 102900000, guid: 1ad187f5269e45e4eb4bdc0513897ce8, type: 3}
-    - {fileID: 102900000, guid: b7ab1896badae9044bde76e3fad68116, type: 3}
-    - {fileID: 102900000, guid: a3191226571e31f47b8ae8bd5d8d9957, type: 3}
-    - {fileID: 102900000, guid: 63049d94eb9b68f4d96eff027b564f64, type: 3}
-    - {fileID: 102900000, guid: 0a692cd46da9baa4fb82c48ecb9f5fa3, type: 3}
-    - {fileID: 102900000, guid: ad6291d28c402334d99da319f9724b3d, type: 3}
+    - {fileID: 102900000, guid: eeafab946a8b4554b8682fb0861e397e, type: 3}
+    - {fileID: 102900000, guid: 8732996283660964ea03ef43895ed322, type: 3}
+    - {fileID: 102900000, guid: 5d6b259accc04204d950709249ee2f16, type: 3}
+    - {fileID: 102900000, guid: 692efc20579657e41bb48a49059ad557, type: 3}
+    - {fileID: 102900000, guid: 8f7ce5338ad02f044bd129e33226a983, type: 3}
+    - {fileID: 102900000, guid: 1e1dd48a07e43b04080705dc514f6011, type: 3}
+    - {fileID: 102900000, guid: 0407dbfdd38efb54bbc26bd48e2191a3, type: 3}
+    - {fileID: 102900000, guid: 16f5e25ad2ba64847ad629e0b0f05182, type: 3}
+    - {fileID: 102900000, guid: b97034d5b356b5b4d8abba2b0e1f477f, type: 3}
+    - {fileID: 102900000, guid: 76409e65428582d49bc4422f1b5c62c1, type: 3}
+    - {fileID: 102900000, guid: feab890ce3536924a95cf9fe021f4c71, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -42,10 +37,43 @@ MonoBehaviour:
       Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
     - Name: 
       Entry: 12
-      Data: 27
+      Data: 30
     - Name: ranks
       Entry: 1
-      Data: 3|9
+      Data: 3|10
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 10
       Data: 0
@@ -93,15 +121,6 @@ MonoBehaviour:
       Data: 6
     - Name: 
       Entry: 10
-      Data: 5
-    - Name: 
-      Entry: 10
-      Data: 5
-    - Name: 
-      Entry: 10
-      Data: 5
-    - Name: 
-      Entry: 10
       Data: 7
     - Name: 
       Entry: 10
@@ -113,23 +132,9 @@ MonoBehaviour:
       Entry: 10
       Data: 10
     - Name: 
-      Entry: 10
-      Data: 11
-    - Name: 
-      Entry: 10
-      Data: 12
-    - Name: 
-      Entry: 10
-      Data: 13
-    - Name: 
-      Entry: 10
-      Data: 14
-    - Name: 
-      Entry: 10
-      Data: 15
-    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
+  face: {fileID: 102900000, guid: a3bf6e00ced0a11439a288451a32c9f0, type: 3}

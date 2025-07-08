@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
-  m_Name: ssmk_schl
+  m_Name: ttmr-cstm-0000
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 102900000, guid: 7f9647776febfdd4581429a8ed2e0c5d, type: 3}
-    - {fileID: 102900000, guid: 0137ac5fa0bf5e74a8aa197c2a228807, type: 3}
-    - {fileID: 102900000, guid: f5480398c065c894a8dab2a504f3a3e4, type: 3}
+    - {fileID: 102900000, guid: 8f2b22d5df9b2a148a10fea797472c11, type: 3}
+    - {fileID: 102900000, guid: 9ec37144a2e2a70418d0f66746b5e122, type: 3}
+    - {fileID: 102900000, guid: 2936a61b6feb885439390f556a4b2e9b, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -48,3 +48,4 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  face: {fileID: 102900000, guid: 0b0ac17d7ed23f94e9fc6ab57a8ad2de, type: 3}

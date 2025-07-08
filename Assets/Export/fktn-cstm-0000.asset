@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
-  m_Name: hrnm_0056
+  m_Name: fktn-cstm-0000
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 102900000, guid: 4a0dfb91f71aea244a0c901095d62c38, type: 3}
-    - {fileID: 102900000, guid: 5b349b2a3fdc5b046929bc25891acebb, type: 3}
-    - {fileID: 102900000, guid: b7ab1896badae9044bde76e3fad68116, type: 3}
+    - {fileID: 102900000, guid: 46bf8a8d55fcb6a4099c7c59ce7c3676, type: 3}
+    - {fileID: 102900000, guid: 050de46953e07f74a8e34f4dad232581, type: 3}
+    - {fileID: 102900000, guid: 33ffd1651e1594e45b16a26fa340a8cd, type: 3}
+    - {fileID: 102900000, guid: d2bac09b2649b0142a44e8f6a3d006f9, type: 3}
+    - {fileID: 102900000, guid: c68f25f0120204645b41390692c25d91, type: 3}
+    - {fileID: 102900000, guid: 50aeaea81a4c1b24fa45cb0136e55606, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -29,10 +32,10 @@ MonoBehaviour:
       Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 6
     - Name: ranks
       Entry: 1
-      Data: 3|1
+      Data: 3|2
     - Name: 
       Entry: 10
       Data: 0
@@ -43,8 +46,18 @@ MonoBehaviour:
       Entry: 10
       Data: 2
     - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
+  face: {fileID: 102900000, guid: f257ca033c609a54d8a1bf8311ce13d5, type: 3}

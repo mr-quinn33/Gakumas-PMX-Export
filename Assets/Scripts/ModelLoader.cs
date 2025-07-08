@@ -6,7 +6,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityPMXExporter;
 using VL.FaceSystem;
-using Object = UnityEngine.Object;
 
 public class ModelLoader : MonoBehaviour
 {
@@ -29,6 +28,12 @@ public class ModelLoader : MonoBehaviour
 
 	public Transform ConnectBone;
 	public Light DirectionalLight;
+	
+	[Button("Export At", ButtonSizes.Medium, ButtonStyle.FoldoutButton)]
+	private void ExportAt(byte index)
+	{
+		Export(configSO, index % configSO.Size);
+	}
 
 	[Button("Export All", ButtonSizes.Medium, ButtonStyle.CompactBox)]
 	private void ExportAll()
@@ -42,12 +47,6 @@ public class ModelLoader : MonoBehaviour
 			AssetBundle.UnloadAllAssetBundles(true);
 		}
 	}
-	
-	[Button("Export First", ButtonSizes.Medium, ButtonStyle.CompactBox)]
-	private void ExportFirst()
-	{
-		Export(configSO, 0);
-	}
 
 	private void Export(ICharacterConfigSO config, int y)
 	{
@@ -58,118 +57,49 @@ public class ModelLoader : MonoBehaviour
 
 	private void Export(Object faceFile, Object hairFile, Object bodyFile, Object modFile = null)
 	{
-		if (AssetDatabase.GetAssetPath(ShaderFile) != "")
+		AddShaderFile();
+		AddBodyFile(bodyFile);
+		AddFaceFile(faceFile, modFile);
+		AddModFile(modFile);
+		AddHairFile(hairFile);
+		ExportModel(hairFile.name, bodyFile.name);
+	}
+
+	private void ExportModel(string hairFileName, string bodyFileName)
+	{
+		string chrName = bodyFileName.Substring(8, 4);
+		string subName = bodyFileName.Substring(13, 4);
+		string numName = bodyFileName.Substring(18, 4);
+		string hairSubName = hairFileName.Substring(13, 4);
+		string hairNumName = hairFileName.Substring(18, 4);
+		string hairName = hairFileName.Substring(23, 4);
+		var PMXPath = $"Assets/Export/{chrName}/{subName}/{numName}/{bodyFileName}-{hairSubName}-{hairNumName}_{hairName}.pmx";
+		string path = Path.GetDirectoryName(PMXPath);
+		string name = Path.GetFileName(PMXPath);
+
+		if (!Directory.Exists(path))
 		{
-			var shader_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(ShaderFile));
-			ShaderList.AddRange(shader_ab.LoadAllAssets<Shader>());
+			Directory.CreateDirectory(path);
 		}
 		else
 		{
-			Debug.Log($"ShaderFile {ShaderFile} is None !");
+			Debug.LogWarning($"Directory already exists: {path}");
 		}
 
-		if (AssetDatabase.GetAssetPath(bodyFile) != "" && File.Exists(AssetDatabase.GetAssetPath(bodyFile)))
+		if (!File.Exists(PMXPath) && Body && (Face || Mod) && Hair)
 		{
-			var body_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(bodyFile));
-			foreach (var ab in body_ab.LoadAllAssets())
-			{
-				if (ab is GameObject go)
-				{
-					Body = Instantiate(go);
-					Body.name = Body.name.Replace("(Clone)", string.Empty);
-					ConnectBone = Body.transform.Find("Reference/Hips/Spine/Spine1/Spine2/Neck/Head");
-				}
-				AssetHolder.Add(ab);
-			}
+			string outPath = string.IsNullOrEmpty(name) ? $"{path}/Model.pmx" : PMXPath;
+			ModelExporter.ExportModel(Body, outPath, colorSpace: RenderTextureReadWrite.sRGB);
+			Debug.Log($"Export model to {outPath}");
 		}
 		else
 		{
-			Debug.Log($"BodyFile {bodyFile} is None !");
+			Debug.Log($"Export Failed \nDirectory Exists:{Directory.Exists(path)} \nBody:{Body} \nFace:{Face} \nHair:{Hair}");
 		}
+	}
 
-		if (AssetDatabase.GetAssetPath(faceFile) != "" && File.Exists(AssetDatabase.GetAssetPath(faceFile)))
-		{
-			var face_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(faceFile));
-			foreach (var ab in face_ab.LoadAllAssets())
-			{
-				if (ab is GameObject go && modFile is null)
-				{
-					Face = Instantiate(go);
-					Face.name = Face.name.Replace("(Clone)", string.Empty);
-					var vl = Face.GetComponentInChildren<VLActorFaceModel>();
-					var skinned = vl.gameObject.AddComponent<SkinnedMeshRenderer>();
-					var mesh = vl.mesh;
-					byte[] bonesPerVertex = new byte[mesh.vertexCount];
-					for (int i = 0; i < bonesPerVertex.Length; i++)
-					{
-						bonesPerVertex[i] = 1;
-					}
-					BoneWeight1[] weights = new BoneWeight1[mesh.vertexCount];
-					for (int i = 0; i < weights.Length; i++)
-					{
-						weights[i].boneIndex = 0;
-						weights[i].weight = 1;
-					}
-
-					var bonesPerVertexArray = new NativeArray<byte>(bonesPerVertex, Allocator.Temp);
-					var weightsArray = new NativeArray<BoneWeight1>(weights, Allocator.Temp);
-					mesh.SetBoneWeights(bonesPerVertexArray, weightsArray);
-
-					skinned.sharedMesh = vl.mesh;
-					skinned.bones = vl.bones;
-					mesh.bindposes = vl.bindposes;
-					foreach (var bs in vl.blendShapes)
-					{
-						var del_ver = new Vector3[mesh.vertexCount];
-						foreach (var ver in bs.blendShapeVertices)
-						{
-							del_ver[ver.vertIndex] = ver.position;
-						}
-						mesh.AddBlendShapeFrame(bs.blendShapeName, 1, del_ver, null, null);
-					}
-					skinned.localBounds = vl.localBounds;
-					skinned.rootBone = vl.rootBone;
-					skinned.materials = vl.sharedMaterials;
-					if (ConnectBone)
-					{
-						Face.transform.SetParent(ConnectBone, false);
-						skinned.bones[0] = ConnectBone;
-						skinned.rootBone = ConnectBone;
-					}
-				}
-				AssetHolder.Add(ab);
-			}
-		}
-		else
-		{
-			Debug.Log($"FaceFile {faceFile} is None !");
-		}
-
-		if (AssetDatabase.GetAssetPath(hairFile) != "" && File.Exists(AssetDatabase.GetAssetPath(hairFile)))
-		{
-			var hair_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(hairFile));
-			foreach (var ab in hair_ab.LoadAllAssets())
-			{
-				if (ab is GameObject go)
-				{
-					Hair = Instantiate(go);
-					Hair.name = Hair.name.Replace("(Clone)", string.Empty);
-					if (ConnectBone)
-					{
-						Hair.transform.SetParent(ConnectBone, false);
-						SkinnedMeshRenderer skinned = Hair.GetComponentInChildren<SkinnedMeshRenderer>();
-						skinned.bones[0] = ConnectBone;
-						skinned.rootBone = ConnectBone;
-					}
-				}
-				AssetHolder.Add(ab);
-			}
-		}
-		else
-		{
-			Debug.Log($"HairFile {hairFile} is None !");
-		}
-		
+	private void AddModFile(Object modFile)
+	{
 		if (modFile is not null && AssetDatabase.GetAssetPath(modFile) != "" && File.Exists(AssetDatabase.GetAssetPath(modFile)))
 		{
 			var mod_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(modFile));
@@ -227,35 +157,129 @@ public class ModelLoader : MonoBehaviour
 		{
 			Debug.Log($"ModFile {modFile} is None !");
 		}
+	}
 
-		var chrName = bodyFile.name.Substring(8, 4);
-		var subName = bodyFile.name.Substring(13, 4);
-		var numName = bodyFile.name.Substring(18, 4);
-		var hairSubName = hairFile.name.Substring(13, 4);
-		var hairNumName = hairFile.name.Substring(18, 4);
-		var hairName = hairFile.name.Substring(23, 4);
-		var PMXPath = $"Assets/Export/{chrName}/{subName}/{numName}/{bodyFile.name}-{hairSubName}-{hairNumName}_{hairName}.pmx";
-		var path = Path.GetDirectoryName(PMXPath);
-		var name = Path.GetFileName(PMXPath);
-
-		if (!Directory.Exists(path))
+	private void AddHairFile(Object hairFile)
+	{
+		if (AssetDatabase.GetAssetPath(hairFile) != "" && File.Exists(AssetDatabase.GetAssetPath(hairFile)))
 		{
-			Directory.CreateDirectory(path);
+			var hair_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(hairFile));
+			foreach (var ab in hair_ab.LoadAllAssets())
+			{
+				if (ab is GameObject go)
+				{
+					Hair = Instantiate(go);
+					Hair.name = Hair.name.Replace("(Clone)", string.Empty);
+					if (ConnectBone)
+					{
+						Hair.transform.SetParent(ConnectBone, false);
+						SkinnedMeshRenderer skinned = Hair.GetComponentInChildren<SkinnedMeshRenderer>();
+						skinned.bones[0] = ConnectBone;
+						skinned.rootBone = ConnectBone;
+					}
+				}
+				AssetHolder.Add(ab);
+			}
 		}
 		else
 		{
-			Debug.LogWarning($"Directory already exists: {path}");
+			Debug.Log($"HairFile {hairFile} is None !");
 		}
+	}
 
-		if (!File.Exists(PMXPath) && Body && (Face || Mod) && Hair)
+	private void AddFaceFile(Object faceFile, Object modFile)
+	{
+		if (AssetDatabase.GetAssetPath(faceFile) != "" && File.Exists(AssetDatabase.GetAssetPath(faceFile)))
 		{
-			var outPath = string.IsNullOrEmpty(name) ? $"{path}/Model.pmx" : PMXPath;
-			ModelExporter.ExportModel(Body, outPath, colorSpace: RenderTextureReadWrite.sRGB);
-			Debug.Log($"Export model to {outPath}");
+			var face_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(faceFile));
+			foreach (var ab in face_ab.LoadAllAssets())
+			{
+				if (ab is GameObject go && modFile is null)
+				{
+					Face = Instantiate(go);
+					Face.name = Face.name.Replace("(Clone)", string.Empty);
+					var vl = Face.GetComponentInChildren<VLActorFaceModel>();
+					var skinned = vl.gameObject.AddComponent<SkinnedMeshRenderer>();
+					var mesh = vl.mesh;
+					byte[] bonesPerVertex = new byte[mesh.vertexCount];
+					for (int i = 0; i < bonesPerVertex.Length; i++)
+					{
+						bonesPerVertex[i] = 1;
+					}
+					BoneWeight1[] weights = new BoneWeight1[mesh.vertexCount];
+					for (int i = 0; i < weights.Length; i++)
+					{
+						weights[i].boneIndex = 0;
+						weights[i].weight = 1;
+					}
+
+					var bonesPerVertexArray = new NativeArray<byte>(bonesPerVertex, Allocator.Temp);
+					var weightsArray = new NativeArray<BoneWeight1>(weights, Allocator.Temp);
+					mesh.SetBoneWeights(bonesPerVertexArray, weightsArray);
+
+					skinned.sharedMesh = vl.mesh;
+					skinned.bones = vl.bones;
+					mesh.bindposes = vl.bindposes;
+					foreach (var bs in vl.blendShapes)
+					{
+						var del_ver = new Vector3[mesh.vertexCount];
+						foreach (var ver in bs.blendShapeVertices)
+						{
+							del_ver[ver.vertIndex] = ver.position;
+						}
+						mesh.AddBlendShapeFrame(bs.blendShapeName, 1, del_ver, null, null);
+					}
+					skinned.localBounds = vl.localBounds;
+					skinned.rootBone = vl.rootBone;
+					skinned.materials = vl.sharedMaterials;
+					if (ConnectBone)
+					{
+						Face.transform.SetParent(ConnectBone, false);
+						skinned.bones[0] = ConnectBone;
+						skinned.rootBone = ConnectBone;
+					}
+				}
+				AssetHolder.Add(ab);
+			}
 		}
 		else
 		{
-			Debug.Log($"Export Failed \nDirectory Exists:{Directory.Exists(path)} \nBody:{Body} \nFace:{Face} \nHair:{Hair}");
+			Debug.Log($"FaceFile {faceFile} is None !");
+		}
+	}
+
+	private void AddBodyFile(Object bodyFile)
+	{
+		if (AssetDatabase.GetAssetPath(bodyFile) != "" && File.Exists(AssetDatabase.GetAssetPath(bodyFile)))
+		{
+			var body_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(bodyFile));
+			foreach (var ab in body_ab.LoadAllAssets())
+			{
+				if (ab is GameObject go)
+				{
+					Body = Instantiate(go);
+					Body.name = Body.name.Replace("(Clone)", string.Empty);
+					ConnectBone = Body.transform.Find("Reference/Hips/Spine/Spine1/Spine2/Neck/Head");
+				}
+				AssetHolder.Add(ab);
+			}
+		}
+		else
+		{
+			Debug.Log($"BodyFile {bodyFile} is None !");
+		}
+	}
+
+	private void AddShaderFile()
+	{
+		if (AssetDatabase.GetAssetPath(ShaderFile) != "")
+		{
+			var shader_ab = AssetBundle.LoadFromFile(AssetDatabase.GetAssetPath(ShaderFile));
+			ShaderList.AddRange(shader_ab.LoadAllAssets<Shader>());
+		}
+		else
+		{
+			Debug.Log($"ShaderFile {ShaderFile} is None !");
 		}
 	}
 
@@ -272,9 +296,9 @@ public class ModelLoader : MonoBehaviour
 		enabled = false;
 	}
 
-	void Update()
+	private void Update()
 	{
-		var dir = -DirectionalLight.transform.forward;
+		Vector3 dir = -DirectionalLight.transform.forward;
 		Shader.SetGlobalFloat("_SkinSaturation", 1);
 		Shader.SetGlobalColor("_MatCapLightColor", DirectionalLight.color);
 		Shader.SetGlobalVector("_MatCapRimColor", MatCapRimColor);

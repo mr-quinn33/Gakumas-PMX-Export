@@ -10,23 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
-  m_Name: hrnm_3
+  m_Name: hmsz-cstm-0000
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 102900000, guid: 4a0dfb91f71aea244a0c901095d62c38, type: 3}
-    - {fileID: 102900000, guid: 0669aa44302682049837a9e1ec11869e, type: 3}
-    - {fileID: 102900000, guid: 95d8f3b1791f9ce4db6b747de6b6ebb1, type: 3}
-    - {fileID: 102900000, guid: f5481affb76d1b344bc8a066144fb865, type: 3}
-    - {fileID: 102900000, guid: 65ee0a399715b604faad14e7b5e1e5a2, type: 3}
-    - {fileID: 102900000, guid: 727be9ded95c87e40a8be92b3ac8d4e7, type: 3}
-    - {fileID: 102900000, guid: ad15874a0583045428c4d040e8eca55c, type: 3}
-    - {fileID: 102900000, guid: 5c44ae4e7f55ec1488bb8e1128961150, type: 3}
-    - {fileID: 102900000, guid: 48194367f676d2c40a41acdcd8ec8c47, type: 3}
-    - {fileID: 102900000, guid: bf0bea6a2c8e6714290ad8a1d566cf5c, type: 3}
-    - {fileID: 102900000, guid: 23e33e9269d0c7c48ae29f91cb1e6b41, type: 3}
+    - {fileID: 102900000, guid: dc43c7796d9a1c244a1605f3c51075c8, type: 3}
+    - {fileID: 102900000, guid: fdae8f1bdcdff3a43906d407f3bbadbd, type: 3}
+    - {fileID: 102900000, guid: 37f90b88d00a56b48b92373ad9990d5e, type: 3}
+    - {fileID: 102900000, guid: 18ec5d04878a44e41b4998faa9929344, type: 3}
+    - {fileID: 102900000, guid: db955650553362b49882eb4c87755eb9, type: 3}
+    - {fileID: 102900000, guid: 71ce8e75b1b1c4a469e07a0158929ad4, type: 3}
+    - {fileID: 102900000, guid: 95b47355730e31e41afbe2ef32555235, type: 3}
+    - {fileID: 102900000, guid: ca31480c4158c964ab62ec8ecd353ffc, type: 3}
+    - {fileID: 102900000, guid: 10df75a8071936c418dd8c82a04681d3, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -37,10 +35,10 @@ MonoBehaviour:
       Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
     - Name: 
       Entry: 12
-      Data: 18
+      Data: 12
     - Name: ranks
       Entry: 1
-      Data: 3|6
+      Data: 3|4
     - Name: 
       Entry: 10
       Data: 0
@@ -48,17 +46,11 @@ MonoBehaviour:
       Entry: 10
       Data: 0
     - Name: 
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 10
       Data: 1
@@ -70,13 +62,7 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 10
-      Data: 3
-    - Name: 
-      Entry: 10
       Data: 4
-    - Name: 
-      Entry: 10
-      Data: 3
     - Name: 
       Entry: 10
       Data: 5
@@ -90,14 +76,9 @@ MonoBehaviour:
       Entry: 10
       Data: 8
     - Name: 
-      Entry: 10
-      Data: 9
-    - Name: 
-      Entry: 10
-      Data: 10
-    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
+  face: {fileID: 102900000, guid: 7e75860859214bb42b67a1aa55673483, type: 3}

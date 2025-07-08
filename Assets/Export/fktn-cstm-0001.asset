@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
-  m_Name: ssmk_0096
+  m_Name: fktn-cstm-0001
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 102900000, guid: c09a22884bfd39f448ec14575e2e5459, type: 3}
-    - {fileID: 102900000, guid: adda069fb8f362144b40de9479505ba3, type: 3}
-    - {fileID: 102900000, guid: bfa1342d8404b584fa40318d21efe70e, type: 3}
-    - {fileID: 102900000, guid: 3bf661b4657611744b2d2e60f074857c, type: 3}
-    - {fileID: 102900000, guid: a6a9119256863ba42b732b4d3f852c64, type: 3}
-    - {fileID: 102900000, guid: 7334ff77f1844c64090056b44da206b6, type: 3}
+    - {fileID: 102900000, guid: e71076b282bf7e442973ff3067ee1fbd, type: 3}
+    - {fileID: 102900000, guid: b8b15621ee223d541b26f2c2e7bba769, type: 3}
+    - {fileID: 102900000, guid: 983585c69a876d9438b61c1ba623da90, type: 3}
+    - {fileID: 102900000, guid: 37c9909b05c1996489f4efc794bbb5ce, type: 3}
+    - {fileID: 102900000, guid: 059a321d0458e684898162de826290b2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -41,6 +40,9 @@ MonoBehaviour:
       Data: 0
     - Name: 
       Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
       Data: 1
     - Name: 
       Entry: 10
@@ -52,12 +54,9 @@ MonoBehaviour:
       Entry: 10
       Data: 4
     - Name: 
-      Entry: 10
-      Data: 5
-    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  face: {fileID: 102900000, guid: 7f9647776febfdd4581429a8ed2e0c5d, type: 3}
+  face: {fileID: 102900000, guid: a8686c4ad3b1285429cb48bebbeaf72e, type: 3}

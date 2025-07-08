@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
-  m_Name: ssmk_0044
+  m_Name: hski-cstm-0000
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 102900000, guid: 033143b6ba7ddb849b207485ff8a96b1, type: 3}
-    - {fileID: 102900000, guid: 95e70855faf2819469c2bf9c18ed6d5c, type: 3}
+    - {fileID: 102900000, guid: 3b384f83ebc095c408f48b1512c56a94, type: 3}
+    - {fileID: 102900000, guid: 760952fc8c5d0074fa102a75a6799821, type: 3}
+    - {fileID: 102900000, guid: 996bd63d9f928f245bd1d3be5527ac98, type: 3}
+    - {fileID: 102900000, guid: 1bd0122ab3f785649be55b822f52f1c2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -28,23 +30,32 @@ MonoBehaviour:
       Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 6
     - Name: ranks
       Entry: 1
-      Data: 3|1
+      Data: 3|2
+    - Name: 
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 6
       Data: 
     - Name: 
       Entry: 10
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 10
       Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  face: {fileID: 102900000, guid: 7f9647776febfdd4581429a8ed2e0c5d, type: 3}
+  face: {fileID: 102900000, guid: 82dd6ecc9a2c3fe458ff9a69794d16ad, type: 3}
