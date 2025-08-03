@@ -18,12 +18,7 @@ namespace VL.Core
         public int vertIndex;
         public Vector3 position;
     }
-
-    public class VLActorFaceBindVertex
-    {
-        public int vertexIndex;
-        public Vector3 basePosition;
-    }
+    
     public struct BlendShapeWeight
     {
         public const int BlendShapeWeightMax = 192;

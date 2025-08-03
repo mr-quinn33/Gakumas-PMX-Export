@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
+  m_Name: hmsz-cstm-0000
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 102900000, guid: dc43c7796d9a1c244a1605f3c51075c8, type: 3}
+    - {fileID: 102900000, guid: fdae8f1bdcdff3a43906d407f3bbadbd, type: 3}
+    - {fileID: 102900000, guid: 37f90b88d00a56b48b92373ad9990d5e, type: 3}
+    - {fileID: 102900000, guid: 18ec5d04878a44e41b4998faa9929344, type: 3}
+    - {fileID: 102900000, guid: db955650553362b49882eb4c87755eb9, type: 3}
+    - {fileID: 102900000, guid: 71ce8e75b1b1c4a469e07a0158929ad4, type: 3}
+    - {fileID: 102900000, guid: 95b47355730e31e41afbe2ef32555235, type: 3}
+    - {fileID: 102900000, guid: ca31480c4158c964ab62ec8ecd353ffc, type: 3}
+    - {fileID: 102900000, guid: 10df75a8071936c418dd8c82a04681d3, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: configTable
+      Entry: 7
+      Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
+    - Name: 
+      Entry: 12
+      Data: 12
+    - Name: ranks
+      Entry: 1
+      Data: 3|4
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  face: {fileID: 102900000, guid: 7e75860859214bb42b67a1aa55673483, type: 3}

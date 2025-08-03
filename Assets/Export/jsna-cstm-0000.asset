@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0c1b2b422040d89409dec82e2f41d1, type: 3}
+  m_Name: jsna-cstm-0000
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 102900000, guid: ea3bcbf70e1413d4882cdeb6640e2769, type: 3}
+    - {fileID: 102900000, guid: a79f9125aed83494f97c2330007df083, type: 3}
+    - {fileID: 102900000, guid: a3e1a3a9a1e1d474f8a587858cd03b8b, type: 3}
+    - {fileID: 102900000, guid: 15ae0c10362bf6b41b930cede00e9b4d, type: 3}
+    - {fileID: 102900000, guid: 29b8a8c101eb0a94692eddba865e8607, type: 3}
+    - {fileID: 102900000, guid: 7a54a52ca7ecd9c4ea60897a677d42fc, type: 3}
+    - {fileID: 102900000, guid: eb330f71e7f4b144dbb831b92504ec00, type: 3}
+    - {fileID: 102900000, guid: 8908f3d790660f74b9b40a3f3b168bad, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: configTable
+      Entry: 7
+      Data: 0|UnityEngine.Object[,], UnityEngine.CoreModule
+    - Name: 
+      Entry: 12
+      Data: 9
+    - Name: ranks
+      Entry: 1
+      Data: 3|3
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  face: {fileID: 102900000, guid: a19586cfe6fbaf34f92d5550c2970b20, type: 3}
